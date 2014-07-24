@@ -1,0 +1,121 @@
+# name: essay template
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# key: essay
+# --
+% =====================================================================
+% === ${1:Titel} ${1:$(make-string (- 64 (string-width text)) ?\=)}
+% =====================================================================
+% --- Filename:     $2
+% --- Author:       Fabian Grünig
+% ---               fabian@mathphys.fsk.uni-heidelberg.de
+% --- Created:      `(format-time-string "%Y-%m-%d %T")`
+% --- Description:  $3
+% ---
+% ---
+
+% ---------------------------------------------------------------------
+% --- Header ----------------------------------------------------------
+% ---------------------------------------------------------------------
+
+\usepackage
+  [
+   left=2.5cm,
+   right=2.5cm,
+   top=2cm,
+   bottom=3cm,
+   %includeheadfoot
+  ]
+  {geometry}
+
+\usepackage[ngermanb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{microtype}
+
+\usepackage{cite}
+\usepackage[fixlanguage]{babelbib}
+\selectbiblanguage{german}
+
+\usepackage
+  [
+   colorlinks,
+   pdfpagelabels,
+   pdfstartview = FitH,
+   bookmarksopen = true,
+   bookmarksnumbered = true,
+   linkcolor = black,
+   plainpages = false,
+   hypertexnames = false,
+   citecolor = black
+  ]
+  {hyperref}
+
+\title{$1}
+\author{Fabian Grünig}
+\date{\today}
+
+% ---------------------------------------------------------------------
+% --- Content ---------------------------------------------------------
+% ---------------------------------------------------------------------
+
+\begin{document}
+\changefont{ptm}{m}{n}
+
+% --- Titlepage -------------------------------------------------------
+
+\begin{titlepage}
+
+{\parindent0pt
+Ruprecht-Karls-Universität Heidelberg \hfill Fabian Grünig \\
+Philosophisches Seminar \hfill fabian@mathphys.fsk.uni-heidelberg.de \\
+\emph{${4:Veranstaltung}} \hfill $5. Semester\\
+${6:Dozent} \hfill \today \\
+${7:Semester}
+}
+\vfill
+
+\begin{center}
+  {\LARGE $1}
+\end{center}
+
+\begin{center}
+\parbox{10cm}{
+  \begin{center}
+    ${8:Untertitel}
+  \end{center}
+}
+\end{center}
+
+\vfill
+\begin{center} 
+  ${9:Eine Arbeit} von Fabian Grünig
+\end{center}
+
+\vspace{0.5cm}
+
+\vfill
+
+% --- ToC -------------------------------------------------------------
+
+\newpage
+\tableofcontents
+\setcounter{page}{0}
+\newpage
+
+% --- Content ---------------------------------------------------------
+
+$0
+
+% ---------------------------------------------------------------------
+% --- End -------------------------------------------------------------
+% ---------------------------------------------------------------------
+
+\newpage
+
+\bibliography{$2}{}
+\bibliographystyle{alpha}
+\end{document}

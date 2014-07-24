@@ -1,0 +1,26 @@
+# ignore emacs backups and stuff
+emacs.d/auto-save-list
+emacs.d/elpa
+emacs.d/url
+emacs.d/thumbs
+emacs.d/org-clock-save.el
+emacs.d/bookmarks
+emacs.d/eproject.lst
+
+# ignore ssh
+ssh
+
+# ignore offlineimap
+offlineimaprc
+
+# pentadactyl stuff
+pentadactyl/info
+pentadactyl/info/
+pentadactyl/info/*
+pentadactyl/info/default/command-history
+pentadactyl/info/default/local-marks
+pentadactyl/info/default/register
+pentadactyl/info
+
+offlineimap.py
+offlineimaprc

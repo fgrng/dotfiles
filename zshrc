@@ -1,0 +1,305 @@
+# =====================================================================
+# === ZShell Config File ==============================================
+# =====================================================================
+# --- Filename:     .zshrc
+# --- Author:       Fabian Grünig
+# ---               gruenig@posteo.de
+# --- Description:  config file for zsh
+# ---
+# ---
+
+# enable and configure the history
+  setopt append_history
+  setopt SHARE_HISTORY
+  HISTFILE="${HOME}/tmp/.zsh_history"
+  HISTSIZE=1000
+  SAVEHIST=1000
+  export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
+  setopt HIST_IGNORE_ALL_DUPS
+  setopt HIST_IGNORE_SPACE
+  setopt HIST_REDUCE_BLANKS
+
+# Prompts for confirmation after 'rm *' etc
+  setopt RM_STAR_WAIT
+
+# Background processes (does this work?)
+  # setopt NO_HUP
+  setopt AUTO_CONTINUE
+  unsetopt BG_NICE
+ 
+# timeout on root shell for "security"
+  if [[ $UID == 0 ]]; then
+    TMOUT=180
+  fi
+
+# No fu**ing Beeping
+  setopt No_Beep
+
+# URLsymbol escaping
+  autoload -U url-quote-magic
+  zle -N self-insert url-quote-magic
+
+# Pos1 und END 
+  bindkey '\e[7~' beginning-of-line
+  bindkey '\e[8~' end-of-line
+  bindkey '^[[3~' delete-char
+  bindkey '^[3;5~' delete-char
+
+# ---------------------------------------------------------------------
+# --- Variables -------------------------------------------------------
+# ---------------------------------------------------------------------
+
+# set terminal property (used e.g. by msgid-chooser)
+  export COLORTERM="yes"
+
+# Weniger Wordchars
+# Ctrl-Backspace respektiert "/"
+  export WORDCHARS='*?_[]~=&;!#$%^(){}<>'
+
+# --- config applications ---------------------------------------------
+
+# use colors when browsing man pages
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
+# --- Stuff, dont know ------------------------------------------------
+
+export WINEDEBUG="-all"
+export MOZ_DISABLE_PANGO=1
+
+# ---------------------------------------------------------------------
+# --- Completion ------------------------------------------------------
+# ---------------------------------------------------------------------
+
+# shift tab + complete-hist
+  bindkey "^[[Z" reverse-menu-complete
+  bindkey '^[[A' up-line-or-search
+  bindkey '^[[B' down-line-or-search   
+ 
+# load completion / completer
+  type compinit &>/dev/null || { autoload -U compinit && compinit }
+  zstyle ':completion:*' completer _complete _correct
+  zstyle ':completion:*:expand:*' tag-order all-expansions
+
+# Cache
+  zstyle ':completion:*' use-cache on
+  zstyle ':completion:*' cache-path /tmp/.zshcache
+
+# Style
+  zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
+  zstyle ':completion:*' menu select=2
+
+# Errors
+  zstyle -e ':completion:*:approximate:*' max-errors 1 numeric
+  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# Formatting / messages
+  zstyle ':completion:*' verbose yes
+  zstyle ':completion:*:descriptions' format '%B%d%b'
+  zstyle ':completion:*:messages' format '%d'
+  zstyle ':completion:*:warnings' form at 'No matches for: %d'
+  zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+  zstyle ':completion:*' group-name ''
+
+# zstyle magical kill menu
+  zstyle ':completion:*:*:kill:*' menu yes select
+  zstyle ':completion:*:kill:*' force-list always
+  zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
+
+# hosts
+  zstyle ':completion:*:hosts' hosts $hostnames
+
+# ---------------------------------------------------------------------
+# --- Appereance ------------------------------------------------------
+# ---------------------------------------------------------------------
+
+# load colors
+  autoload -U colors
+  colors
+
+# Define colors
+  # Forground
+  fg_black=%{$'\e[0;30m'%}
+  fg_red=%{$'\e[0;31m'%}
+  fg_green=%{$'\e[0;32m'%}
+  fg_brown=%{$'\e[0;33m'%}
+  fg_blue=%{$'\e[0;34m'%}
+  fg_purple=%{$'\e[0;35m'%}
+  fg_cyan=%{$'\e[0;36m'%}
+  fg_lgray=%{$'\e[0;37m'%}
+  fg_dgray=%{$'\e[1;30m'%}
+  fg_lred=%{$'\e[1;31m'%}
+  fg_lgreen=%{$'\e[1;32m'%}
+  fg_yellow=%{$'\e[1;33m'%}
+  fg_lblue=%{$'\e[1;34m'%}
+  fg_pink=%{$'\e[1;35m'%}
+  fg_lcyan=%{$'\e[1;36m'%}
+  fg_white=%{$'\e[1;37m'%}
+  # Background
+  bg_red=%{$'\e[0;41m'%}
+  bg_green=%{$'\e[0;42m'%}
+  bg_brown=%{$'\e[0;43m'%}
+  bg_blue=%{$'\e[0;44m'%}
+  bg_purple=%{$'\e[0;45m'%}
+  bg_cyan=%{$'\e[0;46m'%}
+  bg_gray=%{$'\e[0;47m'%}
+  # Attributes
+  at_normal=%{$'\e[0m'%}
+  at_bold=%{$'\e[1m'%}
+  at_italics=%{$'\e[3m'%}
+  at_underl=%{$'\e[4m'%}
+  at_blink=%{$'\e[5m'%}
+  at_outline=%{$'\e[6m'%}
+  at_reverse=%{$'\e[7m'%}
+  at_nondisp=%{$'\e[8m'%}
+  at_strike=%{$'\e[9m'%}
+  at_boldoff=%{$'\e[22m'%}
+  at_italicsoff=%{$'\e[23m'%}
+  at_underloff=%{$'\e[24m'%}
+  at_blinkoff=%{$'\e[25m'%}
+  at_reverseoff=%{$'\e[27m'%}
+  at_strikeoff=%{$'\e[29m'%}
+
+# Define prompt
+  setopt prompt_subst
+  autoload -Uz vcs_info
+  autoload -U colors && colors
+
+  zstyle ':vcs_info:*' actionformats \
+      '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+  zstyle ':vcs_info:*' formats       \
+      '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+  zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+  
+  zstyle ':vcs_info:*' enable git cvs svn hg
+
+  vcs_info_wrapper() {
+      vcs_info
+      if [ -n "$vcs_info_msg_0_" ]; then
+          echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+      fi
+  }
+
+# Define titlebar
+  function title() {
+    # escape '%' chars in $1, make nonprintables visible
+    a=${(V)1//\%/\%\%}
+    
+    # Truncate command, and join lines.
+    a=$(print -Pn "%40>...>$a" | tr -d "\n")
+    
+    case $TERM in
+      screen)
+        print -Pn "\ek$a:$3\e\\"      # screen title (in ^A")
+        ;;
+      xterm*|rxvt*)
+	print -Pn "\e]2;$2 | $3\a" # plain xterm title
+	;;
+    esac
+  }
+
+  # precmd is called just before the prompt is printed
+  function precmd() {
+    title "Dir" "zsh" "%55<...<%~"
+  }
+
+  # preexec is called just before any command line is executed
+  function preexec() {
+    title "$1" "zsh" "%35<...<%~"
+  }
+
+  eval `dircolors -b ~/.dircolors` 
+
+# bell after cmd
+  bellchar=''
+  setterm -blength 0 # Don't REALLY beep
+  zle-line-init () { echo -n "$bellchar" }
+  zle -N zle-line-init
+
+# ---------------------------------------------------------------------
+# --- Global Aliases --------------------------------------------------
+# ---------------------------------------------------------------------
+
+# These do not have to be at the beginning of the command line.
+#  alias -g '...'='../../'
+#  alias -g '....'='../../../'
+# Better:
+  # Quick ../../..
+  rationalise-dot() {
+      if [[ $LBUFFER = *.. ]]; then
+          LBUFFER+=/..
+      else
+          LBUFFER+=.
+      fi
+  }
+  zle -N rationalise-dot
+  bindkey . rationalise-dot
+
+  alias -g BG='& disown'
+  alias -g G='|grep'
+  alias -g T='|tail'
+
+# ---------------------------------------------------------------------
+# --- Aliases ---------------------------------------------------------
+# ---------------------------------------------------------------------
+
+# listing stuff
+  alias ls="ls --color --group-directories-first"
+  alias ll='ls -lh'                 # display more information
+  alias lh='ls -lrAh  .*(.)'        # only show dot-files
+  alias la='ls -lrAh'               # show all files
+  alias ld='ls -ldrh *(/)'          # only show directories
+  alias lsnew="ls -rl *(D.om[1,10])"        # display the newest files
+  alias lsold="ls -rtlh *(D.om[1,10])"      # display the oldest files
+
+  alias mkdir='mkdir -p'                    # mkdir full path
+  alias pp='popd'
+  alias pu='pushd'
+  alias cb='cd -'
+
+# git
+  alias g='git'
+  alias gl='git log --graph --oneline'
+  alias gc='git commit'
+  alias gcm='git commit -m'
+  alias gco='git checkout'
+  alias gb='git branch'
+  alias gst='git status'
+  alias gsh='git show'
+  alias gls='git ls-files'
+  alias ga='git add'
+  alias gd='git diff'
+  alias gp='git push'
+  alias gpull='git pull'
+
+function gi() {
+    gitdir=$(git rev-parse --show-cdup)
+    if [ -d ${gitdir}.git ]
+    then
+        echo $1 >> ${gitdir}.gitignore
+    fi
+}
+
+# alias to avoid making mistakes:
+  alias cd..="cd .."
+
+# stuff
+  alias grep="grep --color=auto"
+  alias df="df -h"
+  alias psgrep="ps uax | grep "
+  alias bc="bc -l"
+  # alias rmtex='rm -rf *.{aux,out,log,synctex.gz,toc,bbl,bcf,blg,run.xml,snm,nav}'
+
+  alias top='htop'
+
+# ---------------------------------------------------------------------
+# --- Local -----------------------------------------------------------
+# ---------------------------------------------------------------------
+
+# local config
+  source ${HOME}/.zsh.d/${HOST}.zshrc

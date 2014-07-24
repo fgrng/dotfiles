@@ -1,0 +1,107 @@
+" .pentadactylrc 
+" 1.0b3 (created: 2010/11/06 12:31:35)
+
+" ================
+" General Options:
+" ================
+
+set autocomplete=
+set complete=sbf
+set guioptions=Cs
+set editor="emacsclient -c"
+set runtimepath=/home/fabian/.pentadactyl
+set showtabline=always
+set shell=/usr/bin/zsh
+
+" load my colortheme
+colorscheme fabian
+
+" ========
+" Commands
+" ========
+
+map -builtin <F1> :tab<Space>:help<Space>
+
+" chromium
+map gc :execute<Space>:js<Space>io.run("chromium",<Space>[buffer.URL],<Space>false)<Return>
+
+" org-mode protocol
+command! org-cap -javascript
+   \ -desc 'Store link for Orgmode'
+   \ io.system('emacsclient -c "org-protocol:/fire-capture:/'
+   \ + encodeURIComponent(buffer.URL) + '/'
+   \ + encodeURIComponent(buffer.title) + '"')
+
+" Searching
+map -builtin gg :open<SPACE>google<SPACE>
+map -builtin gt :tabopen<SPACE>google<SPACE>
+map -builtin aa :open<SPACE>archlinux-wiki<SPACE>
+map -builtin at :tabopen<SPACE>archlinux-wiki<SPACE>
+
+" Tab-Navigation (like i3):
+map -builtin <A-d> :tabnext<CR>
+map -builtin <A-n> :tabprevious<CR>
+map <S-A-d> :tabmove! +1<CR>
+map <S-A-n> :tabmove! -1<CR>
+
+" ====================
+" Commands Emacs-like:
+" ====================
+
+map -builtin <A-x> :
+map -builtin <C-x><C-s> :org-cap<CR>
+
+" Yank (i.e. paste) the current clipboard selection with C-y
+imap -builtin <C-y> <S-Ins>
+tmap -builtin <C-y> i_<S-Ins>
+map -builtin <C-y> <S-Ins>
+cmap -builtin <C-y> <S-Ins>
+vmap -builtin <C-y> <S-Ins>
+
+" Yank (i.e. paste) the current clipboard selection to new background buffer with M-y
+map -builtin <A-y> P
+
+" Yank (i.e. paste) the current clipboard selection to a new focussed buffer with C-M-y
+map -builtin <C-A-y> :tabopen!<SPACE><S-Ins><CR>
+
+" C-g as cancel (C-q is stop) (except QuickHint mode, see below)
+cmap -builtin <C-g> <Esc>
+imap -builtin <C-g> <Esc>
+map -builtin <C-g> <Esc>
+vmap -builtin <C-g> <Esc>
+
+" Avoid Find dialog when cancelling a started command, C-x C-g
+map -builtin <C-x><C-g> <Esc>
+
+" Avoid quit on C-q, and it's more suitable for Stop here
+map -builtin <C-q> :stop<CR>
+
+" Exit, saving the session
+map -builtin <C-x><C-c> :xall<CR>
+
+" Select another buffer with C-x b
+map -builtin <C-x>b :buffer<SPACE>
+
+" List all buffers with C-x C-b
+map -builtin <C-x><C-b> :buffers<CR>
+
+" Close the current tab ("kill buffer") with C-x k
+map -builtin <C-x>k :tabclose<CR>
+
+" Undo close tab with C-_ (also with C-Shift-t, as C-t is new tab)
+map -builtin <C-_> :undo<CR>
+
+" Open a URL
+map -builtin <C-x><C-f> :open<SPACE>
+map -builtin <C-x>t :tabopen!<SPACE>
+map -builtin <C-x><C-t> :tabopen<SPACE>
+
+" Go to home page with C-c h
+map -builtin <C-c>h gh
+
+" Use C-s and C-r for searching (n/N for next/prev as in less)
+map -builtin <C-s> /
+map -builtin <C-r> ?
+
+
+

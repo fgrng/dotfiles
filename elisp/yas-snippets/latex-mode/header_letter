@@ -1,0 +1,80 @@
+# name: letter template
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# key: letter
+# --
+% =====================================================================
+% === ${1:Titel} ${1:$(make-string (- 64 (string-width text)) ?\=)}
+% =====================================================================
+% --- Filename:     $2
+% --- Author:       Fabian Grünig
+% ---               fabian@mathphys.fsk.uni-heidelberg.de
+% --- Created:      `(format-time-string "%Y-%m-%d %T")`
+% --- Description:  Ein Brief
+% ---
+% --- An:   ${3:Herr/Frau}
+% ---       ${4:Vorname Nachname}
+% ---       ${5:Institution}
+% ---       ${6:Strasse Hausnummer}
+% ---       ${7:PLZ Stadt}
+% ---
+% --- Von:  ${8:Fabian Grünig}
+% ---       ${9:INF 690 - 2.OG 3-1}
+% ---       ${10:69120 Heideberg}
+% ---       ${11:0176 99217636}
+% ---       ${12:fabian@mathphys.fsk.uni-heidelberg.de}
+% ---
+
+% ---------------------------------------------------------------------
+% --- Header ----------------------------------------------------------
+% ---------------------------------------------------------------------
+\documentclass[
+  DIN, 
+  pagenumber=false, 
+  parskip=half,
+  fromalign=right,
+  fromphone=true,
+  fromemail=true, 
+  fromurl=false,
+  fromlogo=false, 
+  fromrule=false
+]{scrlttr2}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngermanb]{babel}
+\usepackage{graphicx}
+\usepackage{microtype}
+
+\setkomavar{fromname}{$8}
+\setkomavar{fromaddress}{$9 \\\\ $10}
+\setkomavar{fromphone}{$11}
+\setkomavar{fromemail}{$12}
+\setkomavar{fromurl}{www.muster.de}
+\setkomavar{signature}
+  {\includegraphics[width=5.5cm]
+  {/home/fabian/doc/latex/signature.png}\\\\Fabian Grünig}
+
+\setkomavar{subject}{${13:Betreff}}
+%\setkomavar{customer}{2342}
+
+% ---------------------------------------------------------------------
+% --- Content ---------------------------------------------------------
+% ---------------------------------------------------------------------
+
+\begin{document}
+\begin{letter}
+  {$3 \\\\ $4 \\\\
+   $5 \\\\
+   $6 \\\\ $7
+}
+\opening{Sehr geehrter $3 $4,}
+
+% --- Body ------------------------------------------------------------
+
+
+
+% --- Ende ------------------------------------------------------------
+
+\closing{Mit freundlichem Gruß}
+
+\end{letter}
+\end{document}

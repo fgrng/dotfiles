@@ -1,0 +1,87 @@
+" == Pentadactyl_Color_Scheme ==
+" ==Simple_Colorscheme_Settings==
+
+hi clear
+
+"StatusLine settings
+hi StatusLine 				  color: white !important; background: black !important; font-size: 9px !important; font-weight: normal !important;
+hi StatusLineBroken			  color: red !important; background: black !important; font-size: 9px !important;  font-weight: normal !important;
+hi StatusLineExtended			  color: yellow !important; background: black !important; font-size: 9px !important; font-weight: normal !important;
+hi StatusLineSecure			  color: green !important; background: black !important; font-size: 9px !important; font-weight: normal !important;
+hi StatusCmdLine			  color: white !important; background: black !important; font-size: 9px !important; font-weight: normal !important;
+hi StatusErrorMsg			  color: red !important; background: black !important; font-size: 9px !important; font-weight: normal !important;
+hi StatusInfoMsg			  color: white !important; background: black !important; font-size: 9px !important; font-weight: normal !important;
+hi StatusModeMsg 			  color: white !important; background: black !important; font-size: 9px !important; font-weight: normal !important;
+hi StatusMoreMsg 			  color: white !important; background: black !important; font-size: 9px !important; font-weight: normal !important;
+hi StatusNormal 			  color: white !important; background: black !important; font-size: 9px !important; font-weight: normal !important;
+hi StatusQuestion 			  color: green !important; background: black !important; font-size: 9px !important; font-weight: normal !important;
+hi StatusWarningMsg      		  color: red !important; background: black !important; font-size: 9px !important; font-weight: normal !important;
+
+"CmdLine settings excluding Gradient
+hi CmdNormal				  font-family: monospace; padding: 1px; color: white !important; background-color: black !important; font-size:9px; font-weight: normal !important;
+hi -l CmdNormal CmdLine
+hi -l CmdNormal CmdCmdLine
+hi -l CmdNormal CmdInput
+hi -l CmdNormal CmdPrompt
+hi -l CmdNormal CmdModeMsg
+hi -l CmdNormal CmdMoreMsg
+
+"Completion
+hi CompDesc				  color: gray ; background: black; width: 50%; font-size: 9px;
+hi CompDesc[selected]			  color: gray ; background: red  ; width: 50%; font-size: 9px; background: -moz-linear-gradient(0deg, gray, black);
+hi CompGroup				  color: white; background: black; font-size: 9px; 
+hi CompIcon				  display: none;
+hi CompItem				  color: white; background: black; width: 50%; font-size: 9px;
+hi CompItem[selected]			  color: white; background: black; width: 50%; font-size: 9px; background: -moz-linear-gradient(0deg, gray, black);
+hi CompLess				  text-align: center; background: black; height: 0;    line-height: .5ex; padding-top: 1ex;
+hi CompMore				  text-align: center; background: black; height: .5ex; line-height: .5ex; margin-bottom: -.5ex; 
+hi CompMsg				  font-style: italic; color: white; background: black; margin-left: 16px; font-size: 9px; 
+hi CompResult				  font-family: monospace; width: 45%; overflow: hidden; font-size: 9px; 
+hi CompTitle				  color: magenta; background: black; font-weight: bold; font-size: 9px; 
+hi CompTitle>*				  padding: 0.5ex; background: black; 
+hi CompTitleSep				  background: #00bbff;
+hi CompGroup:not(:first-of-type)          background: black; margin-top: 0;
+hi CompGroup:last-of-type                 background: black; padding-bottom: 0;
+
+"Options for Filter
+hi Filter                                 font-weight: bold; color: #00bfff !important;
+hi 'CompItem[selected] Filter'	  	  color: #00468f !important;
+hi 'CompItem[selected] Object'    	  color: #00468f !important; 
+
+"Used with ]f and [f
+hi FrameIndicator			  background-color: #222222; opacity: 0.6; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+
+"Hint section
+hi Hint				          font-family: Sans; font-size: 11px !important; font-weight: bold !important; color: #ffffff !important; background-color: rgba(0, 0, 0, 0.6) !important; border: solid 1px #000000 !important; position: absolute !important;
+hi Hint::after				  content: attr(number);
+hi HintActive				  background: #4682b4 !important; color: #ffffff !important;
+hi HintElem				  background-color: inherit !important;
+hi HintImage				  opacity: .5 !important;
+
+"Other important stuff
+hi Bell					  border: 0 none; background-color: black;
+hi ErrorMsg				  color: white; background: red; font-weight: bold;
+hi Function				  color: navy;
+hi Indicator			  	  color: blue;
+hi InfoMsg				  color: black; background: white;
+hi LineNr				  color: orange; background: white;
+hi Message				  white-space: normal; min-width: 100%; padding-left: 2em; text-indent: -2em; display: block;
+
+"CmdLine when Not in Use
+hi ModeMsg				  color: white !important; background: black !important;
+hi MoreMsg				  color: white !important; background: black !important;
+hi NonText				  color: lightblue !important; min-height: 14px; padding-left: 2px;
+hi Object				  color: orange !important; background: inherit !important;
+hi Question				  color: white !important; background: inherit !important; font-weight: bold;
+hi Search				  font-size: inherit !important; padding: 0; color: inherit !important; background-color: yellow; padding: 0;
+hi Tag					  color: inherit !important; background: inherit !important;
+hi Title				  color: inherit !important; background: inherit !important; font-weight: bold;
+hi URL					  text-decoration: none; color: inherit; background: inherit;
+hi URL:hover			  	  text-decoration: underline; cursor: pointer;
+hi WarningMsg			 	  color: red !important; background: black !important font-size: 9px !important;
+
+"For other descriptions of each item, please see :h 'highlight'
+
+
+
+" vim: ft=vim:

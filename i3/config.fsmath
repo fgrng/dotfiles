@@ -1,0 +1,149 @@
+#############################################################
+# Filename:      .i3/config
+# Purpose:       config file for i3
+#############################################################
+
+#############################################################
+# Hotkeys
+#############################################################
+
+# Modifiers
+#  Mod4 = Windows
+#  Shift
+#  Control 
+
+# Drag floating windows
+floating_modifier Mod4
+
+# Fullscreen
+bind Mod4+41 f
+
+# Stacking
+bind Mod4+43 s
+# Tabbed
+bind Mod4+25 T
+# Default
+bind Mod4+26 d
+
+# Toggle tiling/floating
+bind Mod4+Shift+65 t
+
+# Focus clients on the left, bottom, top, right:
+bind Mod4+44 h
+bind Mod4+45 j
+bind Mod4+46 k
+bind Mod4+47 l
+
+# Move client to the left, bottom, top, right:
+bind Mod4+Shift+44 mh
+bind Mod4+Shift+45 mj
+bind Mod4+Shift+46 mk
+bind Mod4+Shift+47 ml
+
+# Workspaces
+bind Mod4+10 1
+bind Mod4+11 2
+bind Mod4+12 3
+Bind Mod4+13 4
+bind Mod4+14 5
+bind Mod4+15 6
+bind Mod4+16 7
+bind Mod4+17 8
+bind Mod4+18 9
+bind Mod4+19 10
+
+# Move to Workspaces
+bind Mod4+Shift+10 m1
+bind Mod4+Shift+11 m2
+bind Mod4+Shift+12 m3
+bind Mod4+Shift+13 m4
+bind Mod4+Shift+14 m5
+bind Mod4+Shift+15 m6
+bind Mod4+Shift+16 m7
+bind Mod4+Shift+17 m8
+bind Mod4+Shift+18 m9
+bind Mod4+Shift+19 m10
+
+# Open empty container
+bind Mod1+Shift+Return open
+
+# Horizontal orientation
+bind Mod1+h split h
+
+# Vertical orientation
+bind Mod1+v split v
+
+# focus the parent container
+bind Mod1+u focus parent
+
+# new terminal
+bind Mod4+36 exec /usr/bin/urxvtc
+
+# kill client
+bind Mod4+Shift+24 kill
+
+# Start dmenu
+bind Mod4+55 /usr/bin/dmenu_run -b -i -p "launch:"
+# bind Mod4+55 exec /home/fabian/src/shellex/shellex
+
+# Exit i3
+bind Mod4+Shift+26 exit
+
+# Restart i3
+bind Mod4+Shift+27 restart
+
+# Reload i3
+bind Mod4+27 reload
+
+#############################################################
+# Apperiance
+#############################################################
+
+# red
+client.focused		#BB0000		#BB0000		#FFFFFF
+client.focused_inactive #550000		#550000		#FFFFFF
+client.urgent		#FF0000 	#FF0000		#FFFFFF
+client.unfocused	#800000 	#800000		#C0C0C0
+
+bar.focused		#800000		#DD0000		#FFFFFF
+bar.unfocused		#800000		#AA0000		#FFFFFF
+bar.urgent		#800000		#FFFFFF		#000000
+
+# green
+#client.focused		#999999		#00BB00		#FFFFFF
+#client.urgent		#00FF00 	#00FF00		#FFFFFF
+#client.unfocused	#008000 	#008000		#C0C0C0
+
+#bar.focused		#008000		#00DD00		#FFFFFF
+#bar.unfocused		#008000		#00AA00		#FFFFFF
+#bar.urgent		#008000		#FFFFFF		#000000
+
+# ISO 10646 = Unicode
+font -*-fixed-medium-r-normal--*-100-*-*-*-*-iso8859-1
+
+# Workspacebar yes/no
+# workspace_bar yes
+
+# New windowstyle
+# new_window none
+# for_window [class="urxvt"] border 1pixel
+# for_window [class="emacs"] border 1pixel
+new_window 1pixel
+
+#############################################################
+# Other Configs
+#############################################################
+
+# The IPC interface
+ipc-socket .i3/ipc.sock
+focus_follows_mouse no
+
+#############################################################
+# Assignments
+#############################################################
+
+#############################################################
+# Autostart
+#############################################################
+exec urxvtd -q -f -o
+exexc setxkbmap lv && xmodmap /home/fabian/.xmodmap_neo && xset -r 51

@@ -1,0 +1,6 @@
+# name: org-presentation slide
+# key: slide
+# --
+** ${1:Title}
+
+$0

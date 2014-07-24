@@ -1,0 +1,62 @@
+! =====================================================================
+! === Xdefaults =======================================================
+! =====================================================================
+! --- Filename:  .Xdefaults
+! --- Author:    Fabian Grünig
+! ---            fabian@mathphys.fsk.uni-heidelebrg.de
+! ---
+
+! ---------------------------------------------------------------------
+! --- rxvt-unicode ----------------------------------------------------
+! ---------------------------------------------------------------------
+
+! font
+URxvt*font:             -misc-fixed-medium-r-normal--10-70-100-100-c-60-iso8859-1
+URxvt*boldFont:	        -misc-fixed-medium-r-normal--10-70-100-100-c-60-iso8859-1
+! URxvt.background:       #000000
+! URxvt*background:       rgba:1111/1111/1111/dddd
+URxvt.background:       [80]#000000
+URxvt*foreground:       #FFFFFF
+URxvt*inheritPixmap:    false
+URxvt*transparent:      false
+! URxvt*shading:          20
+URxvt*fade:             20
+
+! stuff
+URxvt*internalBorder:   2
+URxvt*fading:           20
+URxvt*saveLines:        1000
+URxvt*scrollBar:        false
+URxvt*depth:            32
+
+! open urls in firefox on mouseclick
+URxvt.keysym.M-u:       perl:mark-yank-urls:activate_mark_mode
+URxvt.perl-ext:         selection,mark-yank-urls,matcher
+URxvt.urlLauncher:      iceweasel
+URxvt.matcher.button:   1
+
+! neo
+URxvt.keysym.KP_Add:            +
+URxvt.keysym.KP_Subtract:       -
+URxvt.keysym.KP_Multiply:       *
+URxvt.keysym.KP_Divide:         /
+URxvt.keysym.KP_Decimal:        .
+URxvt.keysym.KP_Separator :     ,
+URxvt.keysym.KP_1:              1
+URxvt.keysym.KP_2:              2
+URxvt.keysym.KP_3:              3
+URxvt.keysym.KP_4:              4
+URxvt.keysym.KP_5:              5
+URxvt.keysym.KP_6:              6
+URxvt.keysym.KP_7:              7
+URxvt.keysym.KP_8:              8
+URxvt.keysym.KP_9:              9
+URxvt.keysym.KP_0:              0
+URxvt.urgentOnBell:             true
+
+! ---------------------------------------------------------------------
+! --- Emacs -----------------------------------------------------------
+! ---------------------------------------------------------------------
+
+! font
+Emacs.font: -misc-fixed-medium-r-normal--10-70-100-100-c-60-iso8859-1

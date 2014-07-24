@@ -1,0 +1,7 @@
+# name: list
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# key: itemize
+# --
+\begin{itemize}
+  \item[$1] $0
+\end{itemize}

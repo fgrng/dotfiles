@@ -1,0 +1,9 @@
+# name: section
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# key: sec
+# --
+% --- ${1:Titel} ${1:$(make-string (- 55 (string-width text)) ?\-)}
+
+\section{$1}
+
+$0

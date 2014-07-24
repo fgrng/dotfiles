@@ -1,0 +1,169 @@
+#############################################################
+# Filename:      .i3/config
+# Purpose:       config file for i3
+#############################################################
+
+#############################################################
+# Hotkeys
+#############################################################
+
+# Modifiers
+#  Mod4 = Windows
+#  Shift
+#  Control 
+
+# Drag floating windows
+floating_modifier Mod4
+
+# Fullscreen
+bindcode Mod4+41 fullscreen
+
+# Stacking
+bindcode Mod4+43 layout stacking
+# Tabbed
+bindcode Mod4+25 layout tabbed
+# Default
+bindcode Mod4+26 layout default
+
+# Toggle tiling/floating
+bindcode Mod4+Shift+65 mode toggle
+
+# Focus clients on the left, bottom, top, right:
+bindcode Mod4+44 focus left
+bindcode Mod4+45 focus down
+bindcode Mod4+46 focus up
+bindcode Mod4+47 focus right
+
+# Move client to the left, bottom, top, right:
+bindcode Mod4+Shift+44 move left
+bindcode Mod4+Shift+45 move down
+bindcode Mod4+Shift+46 move up
+bindcode Mod4+Shift+47 move right
+
+# Workspaces
+bindcode Mod4+10 workspace 1
+bindcode Mod4+11 workspace 2
+bindcode Mod4+12 workspace 3
+Bindcode Mod4+13 workspace 4
+bindcode Mod4+14 workspace 5
+bindcode Mod4+15 workspace 6
+bindcode Mod4+16 workspace 7
+bindcode Mod4+17 workspace 8
+bindcode Mod4+18 workspace 9
+bindcode Mod4+19 workspace 10
+
+# Move to Workspaces
+bindcode Mod4+Shift+10 move workspace 1
+bindcode Mod4+Shift+11 move workspace 2
+bindcode Mod4+Shift+12 move workspace 3
+bindcode Mod4+Shift+13 move workspace 4
+bindcode Mod4+Shift+14 move workspace 5
+bindcode Mod4+Shift+15 move workspace 6
+bindcode Mod4+Shift+16 move workspace 7
+bindcode Mod4+Shift+17 move workspace 8
+bindcode Mod4+Shift+18 move workspace 9
+bindcode Mod4+Shift+19 move workspace 10
+
+# Open empty container
+bindsym Mod1+Shift+Return open
+
+# Horizontal orientation
+bindsym Mod1+h split h
+
+# Vertical orientation
+bindsym Mod1+v split v
+
+# focus the parent container
+bindsym Mod1+u focus parent
+
+# Restore saved JSON layout
+# bindsym Mod1+y append_layout /home/fabian/.i3/layout.json
+
+# new terminal
+bindcode Mod4+36 exec /usr/bin/x-terminal-emulator
+
+# kill client
+bindcode Mod4+Shift+24 kill
+
+# Start dmenu
+# bindcode Mod4+55 exec /usr/bin/dmenu_run
+bindcode Mod4+55 exec dmenu_run
+# bindcode Mod4+55 exec /home/fabian/src/shellex/shellex
+
+# Exit i3
+bindcode Mod4+Shift+26 exit
+
+# Restart i3
+bindcode Mod4+Shift+27 restart
+
+# Reload i3
+bindcode Mod4+27 reload
+
+#############################################################
+# Apperiance
+#############################################################
+
+# red
+client.focused		#BB0000		#BB0000		#FFFFFF
+client.focused_inactive #550000		#550000		#FFFFFF
+client.urgent		#FF0000 	#FF0000		#FFFFFF
+client.unfocused	#800000 	#800000		#C0C0C0
+
+bar.focused		#800000		#DD0000		#FFFFFF
+bar.unfocused		#800000		#AA0000		#FFFFFF
+bar.urgent		#800000		#FFFFFF		#000000
+
+# green
+#client.focused		#999999		#00BB00		#FFFFFF
+#client.urgent		#00FF00 	#00FF00		#FFFFFF
+#client.unfocused	#008000 	#008000		#C0C0C0
+
+#bar.focused		#008000		#00DD00		#FFFFFF
+#bar.unfocused		#008000		#00AA00		#FFFFFF
+#bar.urgent		#008000		#FFFFFF		#000000
+
+# ISO 10646 = Unicode
+font -misc-fixed-medium-r-normal--9-80-75-75-c-50-iso10646-1
+# font -*-fixed-medium-r-normal--*-100-*-*-*-*-iso8859-1
+
+# Workspacebar yes/no
+# workspace_bar yes
+
+# New windowstyle
+# new_window none
+# for_window [class="urxvt"] border 1pixel
+# for_window [class="emacs"] border 1pixel
+new_window 1pixel
+
+#############################################################
+# Other Configs
+#############################################################
+
+# The IPC interface
+ipc-socket /tmp/i3.ipc.sock
+focus_follows_mouse no
+
+#############################################################
+# Assignments
+#############################################################
+
+#assign luakit → 2
+
+#############################################################
+# Autostart
+#############################################################
+
+# configure screens
+exec xrandr --output VGA1 --auto --left-of LVDS1
+
+# load neo
+exec setxkbmap -layout de,de -variant neo,basic -option -option grp:sclk_toggle -option grp_led:scroll
+
+# start hotkey daemon
+exec xbindkeys
+
+# start i3bar
+exec /home/fabian/src/i3git/i3/i3bar/i3bar -c /home/fabian/src/i3git/i3status/i3status -m -s /tmp/i3.ipc.sock 
+
+# emacs
+exec emacs --daemon
