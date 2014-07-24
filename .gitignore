@@ -11,16 +11,10 @@ emacs.d/eproject.lst
 ssh
 
 # ignore offlineimap
+offlineimap.py
 offlineimaprc
 
 # pentadactyl stuff
 pentadactyl/info
-pentadactyl/info/
-pentadactyl/info/*
-pentadactyl/info/default/command-history
-pentadactyl/info/default/local-marks
-pentadactyl/info/default/register
-pentadactyl/info
 
-offlineimap.py
-offlineimaprc
+

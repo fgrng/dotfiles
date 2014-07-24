@@ -1,0 +1,18 @@
+# --- SSH Multiplexing
+
+Host *
+  ControlMaster auto
+  ControlPath /tmp/ssh-master-%r@%h:%p
+  ControlPersist 15m
+
+# --- Servers
+
+Host alias
+  HostName eine.adresse.de
+  User username
+  IdentityFile ~/.ssh/id_file
+  Cipher blowfish
+  Ciphers blowfish-cbc,arcfour
+  Compression yes
+  CompressionLevel 5
+  ForwardX11 no
