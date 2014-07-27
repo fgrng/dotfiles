@@ -26,7 +26,7 @@ fi
 # --- default applications---------------------------------------------
 
 export EDITOR="emacsclient -c"
-export BROWSER="iceweasel"
+export BROWSER="firefox"
 export PAGER="less"
 export PICVIEW="feh"
 
@@ -130,12 +130,11 @@ PATH=$PATH:/home/fabian/.gem/ruby/2.1.0/bin
  %{-}%-Lw%{rw}%50>%{rW}%n%f* %t %{-}%+Lw%<" '
 
 # Dock-Mode
-alias dockon="/home/fabian/src/dockon.sh"
+  alias dockon="/home/fabian/src/dockon.sh"
 
 # Music steuern
   alias raspi_webspot="chromium localhost:10000/rompr & disown & ssh pi@fanenet.dyndns.org -p 49153 -L 10000:127.0.0.1:80"
 
-# Battety: Firefox
-
-alias ffsleep="kill -SIGSTOP `pgrep firefox`"
-alias ffwake="kill -SIGCONT `pgrep firefox`"
+# Save Battery: Firefox
+  alias ffsleep="kill -SIGSTOP `pgrep firefox`"
+  alias ffwake="kill -SIGCONT `pgrep firefox`"

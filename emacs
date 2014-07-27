@@ -96,7 +96,7 @@
 
 ;; spell checking
 (setq-default ispell-program-name "aspell")
-(setq ispell-dictionary "de_DE-neu")
+(setq ispell-dictionary "de_DE")
 
 ;; scrolling
 (setq scroll-step 1)

@@ -6,6 +6,9 @@ emacs.d/thumbs
 emacs.d/org-clock-save.el
 emacs.d/bookmarks
 emacs.d/eproject.lst
+emacs.d/ac-comphist.dat
+emacs.d/.org-id-locations
+
 
 # ignore ssh
 ssh
@@ -16,5 +19,3 @@ offlineimaprc
 
 # pentadactyl stuff
 pentadactyl/info
-
-

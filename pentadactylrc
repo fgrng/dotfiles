@@ -14,7 +14,7 @@ set showtabline=always
 set shell=/usr/bin/zsh
 
 " load my colortheme
-colorscheme fabian
+colorscheme custom
 
 " ========
 " Commands
