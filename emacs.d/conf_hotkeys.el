@@ -16,7 +16,7 @@
 (global-set-key [f1] 'help)
 (global-set-key [f2] 'tmms-menubar)
 (global-set-key [f3] 'sunrise)
-(global-set-key [f4] 'mingus)
+(global-set-key [f4] 'my/hyde)
 
 (global-set-key [f5] 'copy-region-as-kill) ; Copy 
 (global-set-key [f6] 'kill-region)         ; Cut 

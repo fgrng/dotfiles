@@ -248,6 +248,13 @@ A prefix arg forces clock in of the default task."
 ;; --- Stuff ----------------------------------------------------------
 ;; --------------------------------------------------------------------
 
+;; open hyde on awesome_blog
+(defun my/hyde()
+  "Open Hyde mode on ~/projects/awesome_blog"
+  (interactive)
+  (hyde "~/projects/awesome_blog/")
+)
+
 ;; iSwitchBuffer arrow-keys
 (defun iswitchb-local-keys ()
   (mapc (lambda (K) 
