@@ -22,42 +22,6 @@
 (setq multi-term-dedicated-select-after-open-p t)
 
 ;; --------------------------------------------------------------------
-;; --- IRC Chat -------------------------------------------------------
-;; --------------------------------------------------------------------
-
-;; (require 'jabber-autoloads)
-;; (require 'tls)
-;; (require 'erc)
-
-;; (defun start-irc ()
-;;    "Connect to IRC."
-;;    (interactive)
-;;    (erc-tls :server "irc.twice-irc.de" :port 6697
-;;         :nick "fbi" :full-name "fabian")
-;;    (erc :server "localhost" :port 6667
-;;         :nick "fabian" :full-name "fabian")
-;;    (setq erc-autojoin-channels-alist '(("localhost" "&bitlbee")
-;;                                        ("twice-irc.de" "#chaos-hd"))))
-
-;; (define-key erc-mode-map (kbd "C-c C-q")
-;;   (lambda (nick)
-;;     (interactive (list (completing-read "Nick: " channel-members)))
-;;     (erc-cmd-QUERY nick)))
-
-;; (setq erc-prompt (lambda ()
-;;   (if (and (boundp 'erc-default-recipients) (erc-default-target))
-;;       (erc-propertize (concat (erc-default-target) ">") 'read-only t 'rear-nonsticky t 'front-nonsticky t)
-;;     (erc-propertize (concat "ERC>") 'read-only t 'rear-nonsticky t 'front-nonsticky t))))
-
-;; (setq  erc-server-coding-system '(utf-8 . utf-8))
-
-;; (add-hook 'erc-after-connect
-;;           '(lambda (SERVER NICK)
-;;              (cond
-;;               ((string-match "localhost" SERVER)
-;;                (erc-message "PRIVMSG" "#bitlbee identify 87bee")))))
-
-;; --------------------------------------------------------------------
 ;; --- Buffers --------------------------------------------------------
 ;; --------------------------------------------------------------------
 
@@ -80,18 +44,6 @@
 ;; --- Template Snippets ----------------------------------------------
 ;; --------------------------------------------------------------------
 
-;; (require 'yasnippet)
-;; ;; (yas/global-mode 1)
-;; ;; (yas/initialize)
-
-;; ;; Jump to end of snippet definition
-;; (define-key yas/keymap (kbd "<return>") 'yas/exit-all-snippets)
-
-;; (setq yas/root-directory "~/.elisp/yas-snippets")
-;; (yas/load-directory yas/root-directory)
-
-;; (setq yas/prompt-functions '(yas/ido-prompt yas/completing-prompt))
-
 (setq abbrev-file-name             ;; tell emacs where to read abbrev
       "~/.emacs.d/abbrev_defs")    ;; definitions from...
 
@@ -107,10 +59,6 @@
 ;; (require 'icicles)
 ;; (icy-mode 1) 
 
-;; mpd
-;; (require 'libmpdee)
-;; (require 'mingus)
-
 ;; expand region
 ;; (require 'expand-region)
 
@@ -118,11 +66,7 @@
 ;; (global-linum-mode 1)
 ;; (setq linum-format "%5d")
 
-;; blog
-;; (require 'o-blog)
-
 ;; markdown 
-
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 
@@ -133,7 +77,6 @@
 (set-face-background 'hl-line "#222")
 
 ;; Spell Checking
-
 (setq flyspell-issue-message-flag nil)
 
 (defun my/switch-dictionary()
@@ -145,7 +88,6 @@
     ))
 
 ;; Python
-
 (load-file "~/src/emacs-for-python/epy-init.el")
 (setq py-load-pymacs-p nil)
 
@@ -162,3 +104,10 @@
       ido-create-new-buffer 'always
       ido-use-filename-at-point nil
       ido-max-prospects 10)
+
+;; --------------------------------------------------------------------
+;; --- Blogging with jekyll -------------------------------------------
+;; --------------------------------------------------------------------
+
+(require 'hyde)
+(setq hyde-home "~/projects/awesome_blog")
