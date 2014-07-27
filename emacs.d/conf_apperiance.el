@@ -2,8 +2,6 @@
 ;; === Emacs Config Files =============================================
 ;; ====================================================================
 ;; --- Filename:      apperiance.emacs
-;; --- Author:        Fabian Grünig
-;; ---                fabian@mathphys.fsk.uni-heidelebrg.de
 ;; --- Description:   Init File for Emacs.
 ;; ---                Apperiance Settings, loaded by .emacs
 ;; ---                

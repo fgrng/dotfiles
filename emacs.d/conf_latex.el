@@ -2,8 +2,6 @@
 ;; === Emacs Config Files =============================================
 ;; ====================================================================
 ;; --- Filename:      latex.emacs
-;; --- Author:        Fabian Grünig
-;; ---                fabian@mathphys.fsk.uni-heidelebrg.de
 ;; --- Description:   Init File for Emacs.
 ;; ---                LaTeX Settings, loaded by .emacs
 ;; ---                

@@ -2,8 +2,6 @@
 ;; === Emacs Config Files =============================================
 ;; ====================================================================
 ;; --- Filename:      orgmode.emacs
-;; --- Author:        Fabian Grünig
-;; ---                fabian@mathphys.fsk.uni-heidelebrg.de
 ;; --- Description:   Init File for Emacs.
 ;; ---                Org-Mode Settings, loaded by .emacs
 ;; ---                

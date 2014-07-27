@@ -2,8 +2,6 @@
 ;; === Emacs Config Files =============================================
 ;; ====================================================================
 ;; --- Filename:      stuff.emacs
-;; --- Author:        Fabian Grünig
-;; ---                fabian@mathphys.fsk.uni-heidelebrg.de
 ;; --- Description:   Init File for Emacs.
 ;; ---                File for small settings, loaded by .emacs
 ;; ---                

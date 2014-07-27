@@ -2,8 +2,6 @@
 ;; === Emacs Config Files =============================================
 ;; ====================================================================
 ;; --- Filename:      gnus.emacs
-;; --- Author:        Fabian Grünig
-;; ---                fabian@mathphys.fsk.uni-heidelebrg.de
 ;; --- Description:   Init File for Emacs.
 ;; ---                Gnus settings, loaded by .emacs
 ;; ---                
