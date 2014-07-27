@@ -167,12 +167,13 @@
 ;; (add-hook 'message-send-hook 'mml-secure-message-sign-smime)
 
 ;; --------------------------------------------------------------------
-;; --- BigBrother -----------------------------------------------------
+;; --- Address Book ---------------------------------------------------
 ;; --------------------------------------------------------------------
 
-(require 'bbdb)
-(bbdb-initialize 'gnus 'message)
+(require 'external-abook)
+(setq external-abook-command "pc_query -m '%s' | grep '@'")
 
-(add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
-;; (bbdb-insinuate-message)
-
+(eval-after-load "message" 
+  '(progn 
+     (add-to-list 'message-mode-hook '(lambda ()
+       (define-key message-mode-map "\C-c\t" 'external-abook-try-expand)))))
