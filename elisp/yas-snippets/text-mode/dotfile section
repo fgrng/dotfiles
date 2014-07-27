@@ -1,9 +1,0 @@
-# name: dotfile section
-# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
-# key: section
-# --
----------------------------------------------------------------------
---- ${1:Titel} ${1:$(make-string (- 64 (string-width text)) ?\-)}
----------------------------------------------------------------------
-
-$0
