@@ -1,7 +1,8 @@
 ;;; external-abook.el --- Enable the use of external address books from within Emacs
 ;;
 ;; Copyright (C) 2008 pmade inc. (Peter Jones pjones@pmade.com)
-;; Copyright (C) 2009 Dominique Devriese (dominique.devriese@gmail.com) 
+;; Copyright (C) 2009 Dominique Devriese (dominique.devriese@gmail.com)
+;; Copyright (C) 2014 Fabian Gruenig (gruenig@posteo.de)
 ;;
 ;; Permission is hereby granted, free of charge, to any person obtaining
 ;; a copy of this software and associated documentation files (the
@@ -54,7 +55,7 @@ or (for use with the goobook app at http://code.google.com/p/goobook/)
 See http://www.mutt.org/doc/manual/manual-4.html#query for more information."
   :group 'external-abook)
 
-(defcustom external-abook-completing-read-function 
+(defcustom external-abook-completing-read-function
   (if (fboundp 'ido-completing-read) 'ido-completing-read 'completing-read)
   "The function to use for choosing an address from the ones proposed by the external address book application."
   :group 'external-abook
@@ -75,10 +76,17 @@ See http://www.mutt.org/doc/manual/manual-4.html#query for more information."
 
 (defun external-abook-strip (elements)
   (mapcar (lambda (s) (replace-regexp-in-string "[ \t]+$" "" s)) elements))
+
+;; Edited by Fabian Gruenig (gruenig@posteo.de)
 (defun external-abook-make-string (address)
   "Create a valid email address string from the given address."
-  (if (null address) nil    
-    (apply 'format (if (> (length address) 1) "%s <%s>" "%s") address)))
+  (if (null address) nil
+    (if (> (length address) 2)
+      (apply 'format "%s %s %s" (list (second address) (first address) (apply 'format "<%s>" (last address))))
+      (if (> (length address) 1)
+	(apply 'format "%s %s" (list (first address) (apply 'format "<%s>" (last address))))
+	(apply 'format "%s" address)
+      ))))
 
 (defun external-abook-completing-read (&rest args)
   "Call the completing-read function defined through the variable external-abook-completing-read-functiond" 
