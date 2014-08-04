@@ -8,7 +8,9 @@ emacs.d/bookmarks
 emacs.d/eproject.lst
 emacs.d/ac-comphist.dat
 emacs.d/.org-id-locations
-
+emacs.d/projectile-bookmarks.eld
+elisp/nxhtml/
+elisp/ac-dict/
 
 # ignore ssh
 ssh
@@ -19,3 +21,4 @@ offlineimaprc
 
 # pentadactyl stuff
 pentadactyl/info
+

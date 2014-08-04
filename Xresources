@@ -57,4 +57,5 @@ URxvt.urgentOnBell:             true
 ! ---------------------------------------------------------------------
 
 ! font
-Emacs.font: -misc-fixed-medium-r-normal--10-70-100-100-c-60-iso8859-1
+Emacs.font: Inconsolata-10
+! Emacs.font: -misc-fixed-medium-r-normal--10-70-100-100-c-60-iso8859-1

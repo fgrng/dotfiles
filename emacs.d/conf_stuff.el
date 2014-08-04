@@ -4,7 +4,7 @@
 ;; --- Filename:      stuff.emacs
 ;; --- Description:   Init File for Emacs.
 ;; ---                File for small settings, loaded by .emacs
-;; ---                
+;; ---
 
 ;; --------------------------------------------------------------------
 ;; --- Sunrise Commander ----------------------------------------------
@@ -65,11 +65,11 @@
 ;; (setq linum-format "%5d")
 
 ;; markdown 
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
+;; (autoload 'markdown-mode "markdown-mode"
+;;    "Major mode for editing Markdown files" t)
 
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . hyde-markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . hyde-markdown-mode))
 
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "#222")
@@ -86,8 +86,45 @@
     ))
 
 ;; Python
-(load-file "~/src/emacs-for-python/epy-init.el")
-(setq py-load-pymacs-p nil)
+;; (load-file "~/src/emacs-for-python/epy-init.el")
+;; (setq py-load-pymacs-p nil)
+
+;; Auto Completion
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "/home/fabian/.elisp//ac-dict")
+(ac-config-default)
+
+;; --------------------------------------------------------------------
+;; --- Ruby/Rails -----------------------------------------------------
+;; --------------------------------------------------------------------
+
+;; Robe
+(add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'robe-mode-hook 'ac-robe-setup)
+
+;; Web Devel
+(load "~/.elisp/nxhtml/autostart.el")
+(setq mumamo-background-colors nil)
+
+;; Workaround the annoying warnings:
+;; Warning (mumamo-per-buffer-local-vars):
+;; Already 'permanent-local t: buffer-file-name
+(when (and (>= emacs-major-version 24)
+	   (>= emacs-minor-version 2))
+  (eval-after-load "mumamo"
+    '(setq mumamo-per-buffer-local-vars
+	   (delq 'buffer-file-name mumamo-per-buffer-local-vars))))
+
+;; Syntax Checking
+(require 'flymake-ruby)
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
+
+;; Sane indentation
+(setq ruby-deep-indent-paren nil)
+
+;; Project Management
+(projectile-global-mode)
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
 
 ;; --------------------------------------------------------------------
 ;; --- IDO ------------------------------------------------------------

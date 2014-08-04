@@ -41,13 +41,11 @@
                          ("sunrise-commander" . "http://joseito.republika.pl/sunrise-commander/")
                          ("org" . "http://orgmode.org/elpa/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
+			 ("melpa" . "http://melpa.milkbox.net/packages/")
                          ))
 (package-initialize)
 
 (require 'ujelly-theme)
-
-(require 'centered-cursor-mode)
-(global-centered-cursor-mode +1)
 
 ;; --------------------------------------------------------------------
 ;; --- Editor Bevavior ------------------------------------------------
@@ -86,7 +84,7 @@
 (add-hook 'latex-mode-hook 'turn-on-auto-fill)
 
 ;; Indention
-(setq-default indent-tabs-mode t)
+(setq-default indent-tabs-mode nil)
 (setq tab-width 2)
 (setq standard-indent 2)
 (setq c-default-style "linux"
@@ -104,6 +102,7 @@
 (setq scroll-preserve-screen-position nil)
 (setq scroll-conservatively 10000)
 (setq auto-window-vscroll nil)
+(setq redisplay-dont-pause t)
 
 ;; yank
 (setq mouse-yank-at-point t)
@@ -120,6 +119,8 @@
 
 ;; Asking
 (defalias 'yes-or-no-p 'y-or-n-p)
+(setq confirm-nonexistent-file-or-buffer nil)
+(setq ido-create-new-buffer 'always)
 
 ;; --------------------------------------------------------------------
 ;; --- Load other files -----------------------------------------------
@@ -135,7 +136,7 @@
 (load-file "~/.emacs.d/conf_hotkeys.el")
 (load-file "~/.emacs.d/conf_stuff.el")
 (load-file "~/.emacs.d/conf_orgmode.el")
-(load-file "~/.emacs.d/conf_latex.el")
 (load-file "~/.emacs.d/conf_gnus.el")
+(load-file "~/.emacs.d/conf_latex.el")
 
 

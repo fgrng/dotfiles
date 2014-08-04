@@ -14,6 +14,8 @@
 ;; (setq color-theme-is-global t)
 ;; (color-theme-initialize)
 
+(set-default-font "Inconsolata-10")
+
 ;; Theme
 (load-theme 'ujelly t)
 
@@ -44,8 +46,10 @@
 (display-time)                          ; Show the time in tbe minibuffer
 
 ;; Background
+
 (set-background-color "black")
 (set-mouse-color "orangered")
 
-(add-to-list 'default-frame-alist '(background-color . "black"))
-(add-to-list 'default-frame-alist '(set-mouse-color "orange"))
+(add-hook 'after-make-frame-functions 'set-background-color "black")
+(add-hook 'after-make-frame-functions 'set-mouse-color "orangered")
+(add-hook 'after-make-frame-functions 'set-default-font "Inconsolata-10")
