@@ -14,8 +14,6 @@
 ;; (setq color-theme-is-global t)
 ;; (color-theme-initialize)
 
-(set-default-font "Inconsolata-10")
-
 ;; Theme
 (load-theme 'ujelly t)
 
