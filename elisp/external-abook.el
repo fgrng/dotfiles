@@ -81,12 +81,13 @@ See http://www.mutt.org/doc/manual/manual-4.html#query for more information."
 (defun external-abook-make-string (address)
   "Create a valid email address string from the given address."
   (if (null address) nil
-    (if (> (length address) 2)
-      (apply 'format "%s %s %s" (list (second address) (first address) (apply 'format "<%s>" (last address))))
-      (if (> (length address) 1)
-	(apply 'format "%s %s" (list (first address) (apply 'format "<%s>" (last address))))
-	(apply 'format "%s" address)
-      ))))
+    (replace-regexp-in-string "," " "
+      (if (> (length address) 2)
+        (apply 'format "%s %s %s" (list (second address) (first address) (apply 'format "<%s>" (last address))))
+        (if (> (length address) 1)
+          (apply 'format "%s %s" (list (first address) (apply 'format "<%s>" (last address))))
+          (apply 'format "%s" address)
+    )))))
 
 (defun external-abook-completing-read (&rest args)
   "Call the completing-read function defined through the variable external-abook-completing-read-functiond" 
