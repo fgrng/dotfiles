@@ -93,7 +93,7 @@ PATH=$PATH:/home/fabian/.gem/ruby/2.1.0/bin
   alias hdmi_off='xrandr --output HDMI1 --off && xrandr --output LVDS1 --auto'
 
 # shortcuts
-  alias mpl='mplayer -idx -msgcolor -nojoystick'
+  alias mpl='mpv -index -msg-color -no-input-joystick'
 
 # debian upgrade
   # alias aptodate='sudo aptitude update && sudo aptitude safe-upgrade'

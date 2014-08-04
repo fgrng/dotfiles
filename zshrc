@@ -293,6 +293,7 @@ function gi() {
   alias df="df -h"
   alias psgrep="ps uax | grep "
   alias bc="bc -l"
+  alias cl="clear"
   # alias rmtex='rm -rf *.{aux,out,log,synctex.gz,toc,bbl,bcf,blg,run.xml,snm,nav}'
 
   alias top='htop'
