@@ -30,7 +30,7 @@ URxvt*depth:            32
 ! open urls in firefox on mouseclick
 URxvt.keysym.M-u:       perl:mark-yank-urls:activate_mark_mode
 URxvt.perl-ext:         selection,mark-yank-urls,matcher
-URxvt.urlLauncher:      iceweasel
+URxvt.urlLauncher:      firefox
 URxvt.matcher.button:   1
 
 ! neo
