@@ -141,8 +141,82 @@
       ido-max-prospects 10)
 
 ;; --------------------------------------------------------------------
+;; --- Helm -----------------------------------------------------------
+;; --------------------------------------------------------------------
+
+(require 'helm)
+(setq helm-command-prefix-key "C-c h")
+
+(require 'helm-config)
+(require 'helm-eshell)
+(require 'helm-files)
+(require 'helm-grep)
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; TAB works in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+(define-key helm-grep-mode-map (kbd "<return>")  'helm-grep-mode-jump-other-window)
+(define-key helm-grep-mode-map (kbd "n")  'helm-grep-mode-jump-other-window-forward)
+(define-key helm-grep-mode-map (kbd "p")  'helm-grep-mode-jump-other-window-backward)
+
+(setq
+ helm-scroll-amount 4 ; scroll 4 lines other window using M-<next>/M-<prior>
+ helm-quick-update t ; do not display invisible candidates
+ helm-idle-delay 0.01 ; be idle for this many seconds, before updating in delayed sources.
+ helm-input-idle-delay 0.01 ; be idle for this many seconds, before updating candidate buffer
+ helm-candidate-number-limit 200
+ helm-M-x-requires-pattern 0
+ helm-ff-file-name-history-use-recentf t
+ ido-use-virtual-buffers t
+ helm-buffers-fuzzy-matching t
+)
+
+(add-hook 'helm-goto-line-before-hook 'helm-save-current-pos-to-mark-ring)
+
+(helm-mode 1)
+
+;; --------------------------------------------------------------------
 ;; --- Blogging with jekyll -------------------------------------------
 ;; --------------------------------------------------------------------
 
 (require 'hyde)
 (setq hyde-home "~/projects/awesome_blog")
+
+;; --------------------------------------------------------------------
+;; --- FlySpell -------------------------------------------------------
+;; --------------------------------------------------------------------
+
+(defun flyspell-emacs-popup-textual (event poss word)
+  "A textual flyspell popup menu."
+  (require 'popup)
+  (let* ((corrects (if flyspell-sort-corrections
+		       (sort (car (cdr (cdr poss))) 'string<)
+		     (car (cdr (cdr poss)))))
+	 (cor-menu (if (consp corrects)
+		       (mapcar (lambda (correct)
+				 (list correct correct))
+			       corrects)
+		     '()))
+	 (affix (car (cdr (cdr (cdr poss)))))
+	 show-affix-info
+	 (base-menu  (let ((save (if (and (consp affix) show-affix-info)
+				     (list
+				      (list (concat "Save affix: " (car affix))
+					    'save)
+				      '("Accept (session)" session)
+				      '("Accept (buffer)" buffer))
+				   '(("Save word" save)
+				     ("Accept (session)" session)
+				     ("Accept (buffer)" buffer)))))
+		       (if (consp cor-menu)
+			   (append cor-menu (cons "" save))
+			 save)))
+	 (menu (mapcar
+		(lambda (arg) (if (consp arg) (car arg) arg))
+		base-menu)))
+    (cadr (assoc (popup-menu* menu :scroll-bar t) base-menu))))
+
+(eval-after-load "flyspell"
+  '(progn
+     (fset 'flyspell-emacs-popup 'flyspell-emacs-popup-textual)))

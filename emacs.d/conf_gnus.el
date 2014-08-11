@@ -107,6 +107,12 @@
 (if (mm-coding-system-p 'utf-8)
     (add-to-list 'mm-body-charset-encoding-alist '(utf-8 . quoted-printable)))
 
+;; Use w3m for html mails
+(setq gnus-mime-display-multipart-related-as-mixed nil)
+(setq mm-text-html-renderer 'w3m)
+(setq mm-inline-text-html-with-images t)
+(setq mm-inline-text-html-with-w3m-keymap nil)
+
 ;; Signatur nicht zitieren
 (setq message-cite-function 'message-cite-original-without-signature)
 

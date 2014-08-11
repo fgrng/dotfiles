@@ -14,6 +14,7 @@
 (setq TeX-auto-save nil)
 (setq TeX-parse-self t)
 ;; (setq-default TeX-master nil)
+(setq-default TeX-master "main")
 
 (setq TeX-open-quote "\"`")
 (setq Tex-close-quote "\"'")

@@ -48,20 +48,38 @@
 (global-unset-key "\M-D")
 (global-set-key "\M-D" 'next-buffer)
 
-(global-unset-key "\M-R")
-(global-set-key "\M-R" 'my/ido-goto-symbol)
-(global-unset-key "\M-T")
+(global-unset-key "\M-G")
+(global-set-key "\M-G" 'my/ido-goto-symbol)
+(global-unset-key "\M-F")
+(global-set-key "\M-F" 'iedit-mode)
 
 (global-unset-key "\M-m")
 (global-set-key "\M-m" 'ibuffer)
 
+(global-unset-key "\M-x")
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+(global-unset-key "\M-y")
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+
 ;; --- Control
 (global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-z") 'repeat)
+
 (global-unset-key (kbd "C-x b"))
-(global-set-key (kbd "C-x b") 'ido-switch-buffer)
+(global-set-key (kbd "C-x b") 'helm-mini)
+
+(global-unset-key (kbd "C-x C-f"))
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+
 (global-unset-key (kbd "C-x C-k"))
 (global-set-key (kbd "C-x C-k") 'my/kill-this-buffer)
+
+(global-unset-key (kbd "C-q"))
+(global-set-key (kbd "C-q") 'flyspell-correct-word-before-point)
+
+(global-unset-key (kbd "C-Q"))
+(global-set-key (kbd "C-Q") 'flymake-display-err-menu-for-current-line)
 
 ;; --- Control-Meta
 (global-set-key (kbd "C-M-r") 'org-capture)

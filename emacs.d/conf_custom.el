@@ -18,9 +18,10 @@
  '(smtpmail-smtp-server "posteo.de")
  '(smtpmail-smtp-service 587)
  '(smtpmail-smtp-user "gruenig@posteo.de")
- '(standard-indent 2)
- '(tab-always-indent (quote complete))
- '(tab-stop-list (quote (2 4 8 16 24 32 40 48 56 64 72 80 88 96 104 112 120))))
+ ;; '(standard-indent 2)
+ ;; '(tab-always-indent (quote complete))
+ ;; '(tab-stop-list (quote (2 4 8 16 24 32 40 48 56 64 72 80 88 96 104 112 120)))
+)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

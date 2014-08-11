@@ -2,14 +2,12 @@
 ;; === Emacs Config File ==============================================
 ;; ====================================================================
 ;; --- Filename:      .emacs
-;; --- Author:        Fabian Grünig
-;; ---                fabian@mathphys.fsk.uni-heidelebrg.de
 ;; --- Description:   Init File for Emacs.
 ;; ---                Libarry paths, load other emacs-files
 ;; ---                
 
 ;; --------------------------------------------------------------------
-;; --- Libraries and generec settings ---------------------------------
+;; --- Libraries and generic settings ---------------------------------
 ;; --------------------------------------------------------------------
 
 ;; Plugins
@@ -97,11 +95,14 @@
 (setq ispell-dictionary "de_DE")
 
 ;; scrolling
+;; (setq scroll-margin 9999)
+;; (setq scroll-preserve-screen-position nil)
+;; (setq auto-window-vscroll nil)
+;; (require 'smooth-scroll)
+(require 'centered-cursor-mode)
+(global-centered-cursor-mode t)
 (setq scroll-step 1)
-(setq scroll-margin 9999)
-(setq scroll-preserve-screen-position nil)
 (setq scroll-conservatively 10000)
-(setq auto-window-vscroll nil)
 (setq redisplay-dont-pause t)
 
 ;; yank
@@ -121,6 +122,35 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq confirm-nonexistent-file-or-buffer nil)
 (setq ido-create-new-buffer 'always)
+
+;; --------------------------------------------------------------------
+;; --- X11 Integration ------------------------------------------------
+;; --------------------------------------------------------------------
+
+(defun show-frame (&optional frame)
+  (raise-frame)
+  ; yes, you have to call this twice. Don’t ask me why…
+  ; select-frame-set-input-focus calls x-focus-frame and does a bit of
+  ; additional magic.
+  (select-frame-set-input-focus (selected-frame))
+  (select-frame-set-input-focus (selected-frame)))
+
+(defun x-urgency-hint (frame arg &optional source)
+  (let* ((wm-hints (append (x-window-property 
+                            "WM_HINTS" frame "WM_HINTS" 
+                            source nil t) nil))
+         (flags (car wm-hints)))
+    ; (message flags)
+    (setcar wm-hints
+            (if arg
+                (logior flags #x00000100)
+              (logand flags #x1ffffeff)))
+    (x-change-window-property "WM_HINTS" wm-hints frame "WM_HINTS" 32 t)))
+
+(defun x-urgent (&optional arg)
+  (interactive "P")
+  (let (frame (car (car (cdr (current-frame-configuration)))))
+  (x-urgency-hint frame (not arg))))
 
 ;; --------------------------------------------------------------------
 ;; --- Load other files -----------------------------------------------

@@ -40,14 +40,16 @@
 ;; (setq fci-rule-use-dashes 1)
 
 ;; Time
-(setq display-time-string-forms '("-- [ " 24-hours ":" minutes " ] "))
+(setq display-time-string-forms '("[" 24-hours ":" minutes "]"))
 (display-time)                          ; Show the time in tbe minibuffer
 
+(require 'powerline)
+(powerline-center-theme)
+
 ;; Background
+;; (set-background-color "black")
+;; (set-mouse-color "orangered")
 
-(set-background-color "black")
-(set-mouse-color "orangered")
-
-(add-hook 'after-make-frame-functions 'set-background-color "black")
-(add-hook 'after-make-frame-functions 'set-mouse-color "orangered")
-(add-hook 'after-make-frame-functions 'set-default-font "Inconsolata-10")
+;; (add-hook 'after-make-frame-functions 'set-background-color "black")
+;; (add-hook 'after-make-frame-functions 'set-mouse-color "orangered")
+;; (add-hook 'after-make-frame-functions 'set-default-font "Inconsolata-10")
