@@ -3,3 +3,5 @@
 	email = gruenig@posteo.de
 [push]
 	default = simple
+[core]
+	excludesfile = /home/fabian/.gitignore_global

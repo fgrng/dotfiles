@@ -22,9 +22,9 @@ set $ws2 number 2: EMACS
 set $ws3 number 3: PDF
 set $ws4 number 4: WEB1
 set $ws5 number 5: WEB2
-set $ws6 number 6: STUFF
-set $ws7 number 7: RSS
-set $ws8 number 8
+set $ws6 number 6: MISC1
+set $ws7 number 7: MISC2
+set $ws8 number 8: SPOT
 set $ws9 number 9
 set $ws10 number 10
 
