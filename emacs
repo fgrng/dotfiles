@@ -12,7 +12,7 @@
 
 ;; Plugins
 (add-to-list 'load-path "~/.elisp/")
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 (let ((default-directory "~/.emacs.d/elpa/")) 
   (normal-top-level-add-subdirs-to-load-path))
@@ -168,5 +168,3 @@
 (load-file "~/.emacs.d/conf_orgmode.el")
 (load-file "~/.emacs.d/conf_gnus.el")
 (load-file "~/.emacs.d/conf_latex.el")
-
-
