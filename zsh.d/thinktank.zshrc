@@ -23,9 +23,14 @@ if [ -f "${HOME}/.gpg-agent-info" ]; then
     export SSH_AUTH_SOCK
 fi
 
+# --- Plugins ---------------------------------------------------------
+
+# define plugins
+plugins=(git emacs bundler screen sudo rails rake-fast)
+
+
 # --- default applications---------------------------------------------
 
-export EDITOR="emacsclient -c"
 export BROWSER="firefox"
 export PAGER="less"
 export PICVIEW="feh"
@@ -73,17 +78,6 @@ PATH=$PATH:/home/fabian/.gem/ruby/2.1.0/bin
   alias cp='rsync -ahP'
   alias scp='rsync -ahP'
 
-# emacs shortcuts
-  em () {
-    emacsclient --alternate-editor="" -c $1 & disown
-  }
-  emt () {
-    emacsclient --alternate-editor="" -nw -c $1
-  }
-  ems () {
-    emacsclient --alternate-editor=""
-  }
-
 # display
   alias vga_on='xrandr --output VGA1 --auto && xrandr --output VGA1 --left-of LVDS1'
   alias vga_same='xrandr --output VGA1 --auto && xrandr --output VGA1 --same-as LVDS1'
@@ -93,7 +87,7 @@ PATH=$PATH:/home/fabian/.gem/ruby/2.1.0/bin
   alias hdmi_off='xrandr --output HDMI1 --off && xrandr --output LVDS1 --auto'
 
 # shortcuts
-  alias mpl='mpv -index -msg-color -no-input-joystick'
+  alias mpl='mpv -no-input-joystick'
 
 # debian upgrade
   # alias aptodate='sudo aptitude update && sudo aptitude safe-upgrade'
@@ -107,6 +101,20 @@ PATH=$PATH:/home/fabian/.gem/ruby/2.1.0/bin
   # alias apr='sudo aptitude remove'
   # alias app='sudo aptitude purge'
   # alias apc='sudo aptitude autoclean'
+
+# archlinux upgrade 
+  alias yaupg='yaourt -Syua' # Synchronize with repositories before upgrading packages (AUR packages too) that are out of date on the local system.
+  alias yasu='yaourt --sucre' # Same as yaupg, but without confirmation
+  alias yain='yaourt -S' # Install specific package(s) from the repositories
+  alias yains='yaourt -U' # Install specific package not from the repositories but from a file
+  alias yare='yaourt -R' # Remove the specified package(s), retaining its configuration(s) and required dependencies
+  alias yarem='yaourt -Rns' # Remove the specified package(s), its configuration(s) and unneeded dependencies
+  alias yarep='yaourt -Si' # Display information about a given package in the repositories
+  alias yareps='yaourt -Ss' # Search for package(s) in the repositories
+  alias yaloc='yaourt -Qi' # Display information about a given package in the local database
+  alias yalocs='yaourt -Qs' # Search for package(s) in the local database
+  alias yalst='yaourt -Qe' # List installed packages, even those installed from AUR (they're tagged as "local")
+  alias yaorph='yaourt -Qtd' # Remove orphans using yaourt
 
 # mpd
   alias raspi_spot="ncmpcpp --host 192.168.2.112"

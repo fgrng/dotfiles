@@ -52,10 +52,6 @@
 # set terminal property (used e.g. by msgid-chooser)
   export COLORTERM="yes"
 
-# Weniger Wordchars
-# Ctrl-Backspace respektiert "/"
-  export WORDCHARS='*?_[]~=&;!#$%^(){}<>'
-
 # --- config applications ---------------------------------------------
 
 # use colors when browsing man pages
@@ -76,11 +72,33 @@ export MOZ_DISABLE_PANGO=1
 # --- Completion ------------------------------------------------------
 # ---------------------------------------------------------------------
 
+unsetopt menu_complete # do not autoselect the first completion entry
+unsetopt flowcontrol
+
+setopt auto_menu # show completion menu on succesive tab press
+setopt complete_in_word
+setopt always_to_end
+
+# Weniger Wordchars
+# Ctrl-Backspace respektiert "/"
+  export WORDCHARS='*?_[]~=&;!#$%^(){}<>'
+
 # shift tab + complete-hist
   bindkey "^[[Z" reverse-menu-complete
   bindkey '^[[A' up-line-or-search
-  bindkey '^[[B' down-line-or-search   
- 
+  bindkey '^[[B' down-line-or-search
+
+# case insensitive
+  zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+  unset CASE_SENSITIVE
+
+  zstyle ':completion:*' list-colors ''
+
+# processes
+  zstyle ':completion:*:*:*:*:*' menu select
+  zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+  zstyle ':completion:*:*:*:*:processes' command "ps -u `whoami` -o pid,user,comm -w -w"
+  
 # load completion / completer
   type compinit &>/dev/null || { autoload -U compinit && compinit }
   zstyle ':completion:*' completer _complete _correct
@@ -114,6 +132,12 @@ export MOZ_DISABLE_PANGO=1
 # hosts
   zstyle ':completion:*:hosts' hosts $hostnames
 
+# ---------------------------------------------------------------------
+# --- Key Bindings ----------------------------------------------------
+# ---------------------------------------------------------------------
+
+bindkey -e
+  
 # ---------------------------------------------------------------------
 # --- Appereance ------------------------------------------------------
 # ---------------------------------------------------------------------
@@ -262,20 +286,21 @@ export MOZ_DISABLE_PANGO=1
   alias pu='pushd'
   alias cb='cd -'
 
-# git
-  alias g='git'
-  alias gl='git log --graph --oneline'
-  alias gc='git commit'
-  alias gcm='git commit -m'
-  alias gco='git checkout'
-  alias gb='git branch'
-  alias gst='git status'
-  alias gsh='git show'
-  alias gls='git ls-files'
-  alias ga='git add'
-  alias gd='git diff'
-  alias gp='git push'
-  alias gpull='git pull'
+# # git
+#   alias g='git'
+#   alias gl='git log --graph --oneline'
+#   alias gc='git commit'
+#   alias gcm='git commit -m'
+#   alias gco='git checkout'
+#   alias gb='git branch'
+#   alias gst='git status --short'
+#   alias gsh='git show'
+#   alias gls='git ls-files'
+#   alias ga='git add'
+#   alias grm='git rm'
+#   alias gd='git diff'
+#   alias gp='git push'
+#   alias gpull='git pull'
 
 function gi() {
     gitdir=$(git rev-parse --show-cdup)
@@ -289,13 +314,10 @@ function gi() {
   alias cd..="cd .."
 
 # stuff
-  alias grep="grep --color=auto"
   alias df="df -h"
   alias psgrep="ps uax | grep "
   alias bc="bc -l"
   alias cl="clear"
-  # alias rmtex='rm -rf *.{aux,out,log,synctex.gz,toc,bbl,bcf,blg,run.xml,snm,nav}'
-
   alias top='htop'
 
 # ---------------------------------------------------------------------
@@ -304,3 +326,40 @@ function gi() {
 
 # local config
   source ${HOME}/.zsh.d/${HOST}.zshrc
+
+# ---------------------------------------------------------------------
+# --- Plugins -----------------------------------------------------------
+# ---------------------------------------------------------------------
+
+# Path to plugin folder. (oh-my-zsh)
+export ZSH=$HOME/.zsh.d/
+
+is_plugin() {
+    local base_dir=$1
+    local name=$2
+    test -f $base_dir/plugins/$name/$name.plugin.zsh \
+	|| test -f $base_dir/plugins/$name/_$name
+}
+
+# load plugins: function path
+for plugin ($plugins); do
+    if is_plugin $ZSH $plugin; then
+	fpath=($ZSH/plugins/$plugin $fpath)
+    fi
+done
+
+# Save the location of the current completion dump file.
+if [ -z "$ZSH_COMPDUMP" ]; then
+    ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${HOST}-${ZSH_VERSION}"
+fi
+
+# Load and run compinit
+autoload -U compinit
+compinit -i -d "${ZSH_COMPDUMP}"
+
+# load plugins: sources
+for plugin ($plugins); do
+    if [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
+	source $ZSH/plugins/$plugin/$plugin.plugin.zsh
+    fi
+done
