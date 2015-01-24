@@ -70,6 +70,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . hyde-markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . hyde-markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.slim\\'" . slim-mode))
 
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "#222")
@@ -103,17 +104,17 @@
 (add-hook 'robe-mode-hook 'ac-robe-setup)
 
 ;; Web Devel
-(load "~/.elisp/nxhtml/autostart.el")
-(setq mumamo-background-colors nil)
+;; (load "~/.elisp/nxhtml/autostart.el")
+;; (setq mumamo-background-colors nil)
 
 ;; Workaround the annoying warnings:
 ;; Warning (mumamo-per-buffer-local-vars):
 ;; Already 'permanent-local t: buffer-file-name
-(when (and (>= emacs-major-version 24)
-	   (>= emacs-minor-version 2))
-  (eval-after-load "mumamo"
-    '(setq mumamo-per-buffer-local-vars
-	   (delq 'buffer-file-name mumamo-per-buffer-local-vars))))
+;; (when (and (>= emacs-major-version 24)
+;; 	   (>= emacs-minor-version 2))
+;;   (eval-after-load "mumamo"
+;;     '(setq mumamo-per-buffer-local-vars
+;; 	   (delq 'buffer-file-name mumamo-per-buffer-local-vars))))
 
 ;; Syntax Checking
 (require 'flymake-ruby)

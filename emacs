@@ -86,7 +86,7 @@
 (setq tab-width 2)
 (setq standard-indent 2)
 (setq c-default-style "linux"
-      c-basic-offset 4)
+      c-basic-offset 2)
 (defvaralias 'c-basic-offset 'tab-width)	
 (defvaralias 'cperl-indent-level 'tab-width)
 
