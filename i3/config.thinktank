@@ -22,11 +22,10 @@ set $ws2 number 2: EMACS
 set $ws3 number 3: PDF
 set $ws4 number 4: WEB1
 set $ws5 number 5: WEB2
-set $ws6 number 6: MISC1
-set $ws7 number 7: MISC2
-set $ws8 number 8: SPOT
-set $ws9 number 9
-set $ws10 number 10
+set $ws6 number 6: MISC
+set $ws7 number 7: SPOT
+set $ws8 number 8: MISC1
+set $ws9 number 9: MISC1
 
 # Drag floating windows
 floating_modifier $mod
@@ -72,7 +71,7 @@ bindcode $mod+14 workspace $ws5
 bindcode $mod+15 workspace $ws6
 bindcode $mod+16 workspace $ws7
 bindcode $mod+17 workspace $ws8
-bindcode $mod+18 workspace $ws10
+bindcode $mod+18 workspace $ws9
 
 # Move to Workspaces
 # bindcode $mod+Shift+10 move workspace 1
@@ -88,7 +87,7 @@ bindcode $mod+Shift+14 move workspace $ws5
 bindcode $mod+Shift+15 move workspace $ws6
 bindcode $mod+Shift+16 move workspace $ws7
 bindcode $mod+Shift+17 move workspace $ws8
-bindcode $mod+Shift+18 move workspace $ws10
+bindcode $mod+Shift+18 move workspace $ws9
 
 # Move Workspaces to Output
 bindcode $mod+24 move workspace to output right
