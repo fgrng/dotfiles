@@ -1,4 +1,5 @@
 # ignore emacs backups and stuff
+emacs.d/recentf
 emacs.d/auto-save-list
 emacs.d/elpa
 emacs.d/url
