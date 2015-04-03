@@ -40,16 +40,16 @@
 ;; FILES
 ;; (setq org-agenda-include-diary nil)
 ;; (setq org-agenda-diary-file "~/org/diary.org")
-(setq org-default-notes-file "~/org/refile.org")
+(setq org-default-notes-file "~/doc/org/refile.org")
 
-(setq org-agenda-files (list "~/org/todos.org"
-                             "~/org/tasks.org"
-                             "~/org/dates.org"
-                             "~/org/google.org"
-                             "~/org/refile.org"
+(setq org-agenda-files (list "~/doc/org/todos.org"
+                             "~/doc/org/tasks.org"
+                             "~/doc/org/dates.org"
+                             "~/doc/org/google.org"
+                             "~/doc/org/refile.org"
                              ))
 
-(setq org-directory "~/org")
+(setq org-directory "~/doc/org")
 
 ;; --------------------------------------------------------------------
 ;; --- Capturing ------------------------------------------------------
@@ -59,41 +59,41 @@
 (setq org-capture-templates
       (quote ((
                "t" "TODO" entry 
-               (file "~/org/refile.org")
+               (file "~/doc/org/refile.org")
                "* TODO %? \n- Added: %U\n- Info: " 
                )
               (
                "f" "TASK" entry 
-               (file "~/org/refile.org")
+               (file "~/doc/org/refile.org")
                "* TODO %? \n- Added: %U\n- Who: \n- Info: " 
                )
               (
                "l" "TODO+LINK" entry
-               (file "~/org/refile.org")
+               (file "~/doc/org/refile.org")
                "* TODO %? \n- Added: %U\n- Link: %a\n- Info: %i"
                )
               (
                "m" "TODO+MAIL" entry
-               (file "~/org/refile.org")
+               (file "~/doc/org/refile.org")
                "* TODO %? \n- Added: %U\n- Mail\n  + From: %:from\n  - Thema: %:subject\n  - Link %a\n- Info: %i"
                )
               (
                "r" "READING+LINK" entry 
-               (file "~/org/refile.org")
+               (file "~/doc/org/refile.org")
                "* SOMEDAY %? \n- Added: %U\n- Link: %a"
                )
               (
                "S" "SHOPPING" checkitem
-               (file+headline "~/org/location.org" "SHOPPING")
+               (file+headline "~/doc/org/location.org" "SHOPPING")
                "[ ] %?"
                )
               (
                "s" "SOMEDAY" entry 
-               (file+headline "~/org/refile.org" "TASKS")
+               (file+headline "~/doc/org/refile.org" "TASKS")
                "* SOMEDAY %? \n- Added: %U\n- Link: %a\n- Info: " 
                )
               ("w" "ORG-PROT link" entry 
-               (file "~/org/refile.org" )
+               (file "~/doc/org/refile.org" )
                "* SOMEDAY Stored link: %c\n- %i"
                :immediate-finish t :kill-client t))))
  
@@ -105,9 +105,9 @@
                :kill-client t))
 
 ; Refile Targets
-(setq my/org-refile-files (list "~/org/todos.org"
-                             "~/org/tasks.org"
-                             "~/org/dates.org"
+(setq my/org-refile-files (list "~/doc/org/todos.org"
+                             "~/doc/org/tasks.org"
+                             "~/doc/org/dates.org"
                              ))
 
 (setq org-refile-targets (quote ((my/org-refile-files :maxlevel . 1))))
