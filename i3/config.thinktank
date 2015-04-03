@@ -114,8 +114,11 @@ bindcode $mod+36 exec /usr/bin/urxvtc
 # kill client (q)
 bindcode $mod+Shift+24 kill
 
-# Start dmenu (v)
-bindcode $mod+55 exec /usr/bin/dmenu_run
+# Start dmenu (a)
+bindcode $mod+40 exec /usr/bin/dmenu_run
+
+# Start dmenu for pass (v)
+bindcode $mod+55 exec ~/src/passmenu.sh
 
 # Exit i3 (e)
 bindcode $mod+Shift+26 exit
