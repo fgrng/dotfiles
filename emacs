@@ -82,10 +82,10 @@
 (add-hook 'latex-mode-hook 'turn-on-auto-fill)
 
 ;; Indention
-(setq-default indent-tabs-mode nil)
-(setq tab-width 2)
-(setq standard-indent 2)
-(setq c-default-style "linux"
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 2)
+(setq-default standard-indent 2)
+(setq-default c-default-style "linux"
       c-basic-offset 2)
 (defvaralias 'c-basic-offset 'tab-width)	
 (defvaralias 'cperl-indent-level 'tab-width)
@@ -168,3 +168,4 @@
 (load-file "~/.emacs.d/conf_orgmode.el")
 (load-file "~/.emacs.d/conf_gnus.el")
 (load-file "~/.emacs.d/conf_latex.el")
+

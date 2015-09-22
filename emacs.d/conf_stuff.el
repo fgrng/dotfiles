@@ -56,6 +56,32 @@
 
 (setq find-directory-functions (cons 'sr-dired find-directory-functions))
 
+(add-to-list  'mm-inhibit-file-name-handlers 'openwith-file-handler)
+(when (require 'openwith nil 'noerror)
+	(setq openwith-associations
+				(list
+				 (list (openwith-make-extension-regexp
+								'("mpg" "mpeg" "mp3" "mp4"
+									"avi" "wmv" "wav" "mov" "flv"
+									"ogm" "ogg" "mkv"))
+							 "mpv"
+							 '(file))
+				 (list (openwith-make-extension-regexp
+								'("xbm" "pbm" "pgm" "ppm" "pnm"
+									"png" "gif" "bmp" "tif" "jpeg" "jpg"))
+							 "feh"
+							 '(file))
+				 (list (openwith-make-extension-regexp
+								'("doc" "docx" "xls" "ppt" "odt" "ods" "odg" "odp"))
+							 "libreoffice"
+							 '(file))
+				 (list (openwith-make-extension-regexp
+								'("pdf" "ps" "ps.gz" "dvi"))
+							 "evince"
+							 '(file))
+				 ))
+	(openwith-mode 1))
+
 ;; --------------------------------------------------------------------
 ;; --- Terminal -------------------------------------------------------
 ;; --------------------------------------------------------------------
@@ -93,16 +119,27 @@
 (quietly-read-abbrev-file)
 (setq save-abbrevs t)
 
+;; (require 'yasnippet)
+
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"
+        "~/src/yasnippet-snippets"
+				))
+
+(yas-global-mode nil)
+
 ;; --------------------------------------------------------------------
 ;; --- Stuff ----------------------------------------------------------
 ;; --------------------------------------------------------------------
+
+(put 'narrow-to-region 'disabled nil)
 
 ;; cycle through completion
 ;; (require 'icicles)
 ;; (icy-mode 1) 
 
 ;; expand region
-;; (require 'expand-region)
+(require 'expand-region)
 
 ;; line numbers
 ;; (global-linum-mode 1)
@@ -130,35 +167,43 @@
     (message "Dictionary switched from %s to %s" dic change)
     ))
 
-;; Python
-;; (load-file "~/src/emacs-for-python/epy-init.el")
-;; (setq py-load-pymacs-p nil)
-
 ;; Auto Completion
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "/home/fabian/.elisp//ac-dict")
 (ac-config-default)
 
+;; Smart Tabs
+(smart-tabs-insinuate 'javascript 'python 'ruby)
+
+;; --------------------------------------------------------------------
+;; --- Python ---------------------------------------------------------
+;; --------------------------------------------------------------------
+
+(smart-tabs-advice python-indent-line-1 python-indent)
+    (add-hook 'python-mode-hook
+              (lambda ()
+                (setq indent-tabs-mode t)
+                (setq tab-width (default-value 'tab-width))))
+
+
+;; --------------------------------------------------------------------
+;; --- Javascript -----------------------------------------------------
+;; --------------------------------------------------------------------
+
+(smart-tabs-advice js2-indent-line js2-basic-offset)
+
 ;; --------------------------------------------------------------------
 ;; --- Ruby/Rails -----------------------------------------------------
 ;; --------------------------------------------------------------------
 
+;; RVM support
+(require 'rvm)
+(rvm-use-default)
+(rvm-autodetect-ruby)
+
 ;; Robe
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'robe-mode-hook 'ac-robe-setup)
-
-;; Web Devel
-;; (load "~/.elisp/nxhtml/autostart.el")
-;; (setq mumamo-background-colors nil)
-
-;; Workaround the annoying warnings:
-;; Warning (mumamo-per-buffer-local-vars):
-;; Already 'permanent-local t: buffer-file-name
-;; (when (and (>= emacs-major-version 24)
-;; 	   (>= emacs-minor-version 2))
-;;   (eval-after-load "mumamo"
-;;     '(setq mumamo-per-buffer-local-vars
-;; 	   (delq 'buffer-file-name mumamo-per-buffer-local-vars))))
 
 ;; Syntax Checking
 (require 'flymake-ruby)
@@ -166,6 +211,10 @@
 
 ;; Sane indentation
 (setq ruby-deep-indent-paren nil)
+
+;; Smart-Tabs-Mode
+(smart-tabs-advice ruby-indent-line ruby-indent-level)
+(setq ruby-indent-tabs-mode t)
 
 ;; Project Management
 (projectile-global-mode)

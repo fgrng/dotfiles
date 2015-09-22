@@ -43,6 +43,7 @@
 (setq display-time-string-forms '("[" 24-hours ":" minutes "]"))
 (display-time)                          ; Show the time in tbe minibuffer
 
+;; Powerline Mode
 (require 'powerline)
 (powerline-center-theme)
 

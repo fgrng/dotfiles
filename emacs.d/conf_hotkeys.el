@@ -32,6 +32,7 @@
 (global-set-key (kbd "<f11> d") 'my/visit-org-dates)
 (global-set-key [f12] 'my/visit-org-refile)
 
+
 ;; --- Meta (i3-like?)
 (global-unset-key (kbd "M-<return>"))
 (global-set-key (kbd "M-<return>") 'multi-term-dedicated-toggle)
@@ -53,14 +54,18 @@
 (global-unset-key "\M-F")
 (global-set-key "\M-F" 'iedit-mode)
 
-(global-unset-key "\M-m")
-(global-set-key "\M-m" 'ibuffer)
+(global-unset-key (kbd "C-x C-b"))
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (global-unset-key "\M-x")
 (global-set-key (kbd "M-x") 'helm-M-x)
 
 (global-unset-key "\M-y")
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+
+(global-unset-key (kbd "M-m"))
+(global-set-key (kbd "M-m") 'er/expand-region)
+
 
 ;; --- Control
 (global-unset-key (kbd "C-z"))
@@ -80,6 +85,7 @@
 
 (global-unset-key (kbd "C-Q"))
 (global-set-key (kbd "C-Q") 'flymake-display-err-menu-for-current-line)
+
 
 ;; --- Control-Meta
 (global-set-key (kbd "C-M-r") 'org-capture)
