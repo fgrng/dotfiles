@@ -29,6 +29,9 @@ ln -vfs ${SCRIPTDIR}/profile.${THIS_HOST} ${HOME}/.profile
 ln -vfs ${SCRIPTDIR}/profile.${THIS_HOST} ${HOME}/.bash_profile
 ln -vfs ${SCRIPTDIR}/profile.${THIS_HOST} ${HOME}/.zprofile
 
+unlink ${HOME}/.zshenv
+ln -vfs ${SCRIPTDIR}/zshenv.${THIS_HOST} ${HOME}/.zshenv
+
 echo ""
 echo "Link dotfolders."
 ln -Tsfv ${SCRIPTDIR}/i3/ ${HOME}/.i3
