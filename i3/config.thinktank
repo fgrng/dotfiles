@@ -114,11 +114,11 @@ bindcode $mod+36 exec /usr/bin/urxvtc
 # kill client (q)
 bindcode $mod+Shift+24 kill
 
-# Start dmenu (a)
-bindcode $mod+40 exec /usr/bin/dmenu_run
+# Start dmenu (v)
+bindcode $mod+55 exec /usr/bin/dmenu_run
 
-# Start dmenu for pass (v)
-bindcode $mod+55 exec ~/src/passmenu.sh
+# Start dmenu for pass (d)
+bindcode $mod+40 exec ~/src/passmenu.sh
 
 # Exit i3 (e)
 bindcode $mod+Shift+26 exit
@@ -127,8 +127,7 @@ bindcode $mod+Shift+26 exit
 bindcode $mod+Shift+27 restart
 
 # Reload i3 (r)
-# i3 crash?! WTF
-# bindcode $mod+27 reload
+bindcode $mod+27 reload
 
 # --- bind ExtraKeys -------------------------------------------------
 
@@ -139,7 +138,22 @@ bindcode 123 exec amixer -c 0 sset Master 1+
 # Lock Screen
 bindcode 160 exec i3lock -d --image=~/.wallpaper2_lock.png
 # IBM Key
-bindcode 156 exec xcalib -invert -alter  
+bindcode 156 exec xcalib -invert -alter
+
+# Photo/Headset
+# bindcode 220
+# Camera
+# bindcode 235
+# Screen Light Down
+bindcode 232 exec xbacklight -dec 5
+# Screen Light Up
+bindcode 233 exec xbacklight -inc 5
+# Prev Title
+# bindcode 171
+# Play/Pause
+# bindcode 172
+# Prev Next
+# bindcode 173
 
 # ---------------------------------------------------------------------
 # --- The Look --------------------------------------------------------
