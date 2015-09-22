@@ -42,6 +42,9 @@
 ;;
 ;; git clone git://pmade.com/elisp
 
+;; provides 'first' and 'second' command
+(require 'cl)
+
 (defgroup external-abook nil "external-abook: access an external address book application" :group 'External)
 (defcustom external-abook-command nil
   "The command line tool to use for searching the external address book.
