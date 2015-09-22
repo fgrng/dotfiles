@@ -46,29 +46,6 @@
   bindkey '^[3;5~' delete-char
 
 # ---------------------------------------------------------------------
-# --- Variables -------------------------------------------------------
-# ---------------------------------------------------------------------
-
-# set terminal property (used e.g. by msgid-chooser)
-  export COLORTERM="yes"
-
-# --- config applications ---------------------------------------------
-
-# use colors when browsing man pages
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
-
-# --- Stuff, dont know ------------------------------------------------
-
-export WINEDEBUG="-all"
-export MOZ_DISABLE_PANGO=1
-
-# ---------------------------------------------------------------------
 # --- Completion ------------------------------------------------------
 # ---------------------------------------------------------------------
 
@@ -252,6 +229,7 @@ bindkey -e
 # These do not have to be at the beginning of the command line.
 #  alias -g '...'='../../'
 #  alias -g '....'='../../../'
+
 # Better:
   # Quick ../../..
   rationalise-dot() {
@@ -285,22 +263,6 @@ bindkey -e
   alias pp='popd'
   alias pu='pushd'
   alias cb='cd -'
-
-# # git
-#   alias g='git'
-#   alias gl='git log --graph --oneline'
-#   alias gc='git commit'
-#   alias gcm='git commit -m'
-#   alias gco='git checkout'
-#   alias gb='git branch'
-#   alias gst='git status --short'
-#   alias gsh='git show'
-#   alias gls='git ls-files'
-#   alias ga='git add'
-#   alias grm='git rm'
-#   alias gd='git diff'
-#   alias gp='git push'
-#   alias gpull='git pull'
 
 function gi() {
     gitdir=$(git rev-parse --show-cdup)

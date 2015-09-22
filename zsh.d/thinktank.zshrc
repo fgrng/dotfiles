@@ -28,17 +28,8 @@ fi
 # define plugins
 plugins=(git emacs bundler screen sudo rails rake-fast)
 
-
-# --- default applications---------------------------------------------
-
-export BROWSER="firefox"
-export PAGER="less"
-export PICVIEW="feh"
-
-export ALTERNATE_EDITOR="emacs"
-export USE_EDITOR=$EDITOR
-export VISUAL=$EDITOR
-export MOVPLAY="mplayer"
+# rvm completion
+fpath=(${HOME}/.rvm/scripts/zsh/Completion/ $fpath)
 
 # ---------------------------------------------------------------------
 # --- Apperiance  -----------------------------------------------------
@@ -140,5 +131,10 @@ export MOVPLAY="mplayer"
   alias raspi_webspot="chromium localhost:10000/rompr & disown & ssh pi@fanenet.dyndns.org -p 49153 -L 10000:127.0.0.1:80"
 
 # Save Battery: Firefox
-  alias ffsleep="kill -SIGSTOP `pgrep firefox`"
-  alias ffwake="kill -SIGCONT `pgrep firefox`"
+  alias ffsleep="pkill -SIGSTOP firefox"
+  alias ffwake="pkill -SIGCONT firefox"
+  alias chromesleep="pkill -SIGSTOP chrome"
+  alias chromewake="pkill -SIGCONT chrome"
+
+# Windows Terminal Server (urz hd)
+	alias rurz="rdesktop -g 1366x768 -P -z -x l -r sound:off -d ad -u cx025 tsneu.ad.uni-heidelberg.de"

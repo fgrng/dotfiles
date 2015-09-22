@@ -19,7 +19,7 @@ export LC_ALL="en_GB.UTF-8"
 # export LC_MEASUREMENT="de_DE.UTF-8"
 # export LC_IDENTIFICATION="de_DE.UTF-8"
 
-# --- path ------------------------------------------------------------
+# --- PATH ------------------------------------------------------------
 
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin" 
