@@ -124,9 +124,6 @@ fpath=(${HOME}/.rvm/scripts/zsh/Completion/ $fpath)
   alias scr='screen -X caption always "%{rw} * | %H * $LOGNAME | %{bw}%c %D |
  %{-}%-Lw%{rw}%50>%{rW}%n%f* %t %{-}%+Lw%<" '
 
-# Dock-Mode
-  alias dockon="/home/fabian/src/dockon.sh"
-
 # Music steuern
   alias raspi_webspot="chromium localhost:10000/rompr & disown & ssh pi@fanenet.dyndns.org -p 49153 -L 10000:127.0.0.1:80"
 
@@ -138,3 +135,6 @@ fpath=(${HOME}/.rvm/scripts/zsh/Completion/ $fpath)
 
 # Windows Terminal Server (urz hd)
 	alias rurz="rdesktop -g 1366x768 -P -z -x l -r sound:off -d ad -u cx025 tsneu.ad.uni-heidelberg.de"
+
+#	R, be quiet
+	alias R="R --quiet"
