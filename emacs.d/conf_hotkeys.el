@@ -12,9 +12,9 @@
 
 ;; --- F-Keys
 (global-set-key [f1] 'help)
-(global-set-key [f2] 'sunrise)
-(global-set-key [f3] 'magit-status)
-(global-set-key [f4] 'my/hyde)
+(global-set-key [f2] 'hydra-projectile/body)
+(global-set-key [f3] 'help)
+(global-set-key [f4] 'help)
 
 (global-set-key [f5] 'copy-region-as-kill) ; Copy
 (global-set-key [f6] 'kill-region)         ; Cut
@@ -32,6 +32,14 @@
 (global-set-key (kbd "<f11> d") 'my/visit-org-dates)
 (global-set-key [f12] 'my/visit-org-refile)
 
+;; --- hydra
+(global-set-key (kbd "C-c C-f") 'hydra-projectile/body)
+(global-set-key (kbd "C-c C-g") 'hydra-magit/body)
+(global-unset-key (kbd "C-x C-x"))
+(global-set-key (kbd "C-x C-x") 'hydra-eval/body)
+
+(global-set-key (kbd "M-y") 'hydra-yank-pop/yank-pop)
+(global-set-key (kbd "C-y") 'hydra-yank-pop/yank)
 
 ;; --- Meta (i3-like?)
 (global-unset-key (kbd "M-<return>"))
@@ -86,6 +94,8 @@
 (global-unset-key (kbd "C-Q"))
 (global-set-key (kbd "C-Q") 'flymake-display-err-menu-for-current-line)
 
+(global-set-key [C-next] 'text-scale-decrease)
+(global-set-key [C-prior] 'text-scale-increase)
 
 ;; --- Control-Meta
 (global-set-key (kbd "C-M-r") 'org-capture)

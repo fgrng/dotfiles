@@ -4,7 +4,7 @@
 ;; --- Filename:      .emacs
 ;; --- Description:   Init File for Emacs.
 ;; ---                Libarry paths, load other emacs-files
-;; ---                
+;; ---
 
 ;; --------------------------------------------------------------------
 ;; --- Libraries and generic settings ---------------------------------
@@ -39,7 +39,7 @@
                          ("sunrise-commander" . "http://joseito.republika.pl/sunrise-commander/")
                          ("org" . "http://orgmode.org/elpa/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
                          ))
 (package-initialize)
 
@@ -82,11 +82,11 @@
 (add-hook 'latex-mode-hook 'turn-on-auto-fill)
 
 ;; Indention
-(setq-default indent-tabs-mode t)
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq-default standard-indent 2)
 (setq-default c-default-style "linux"
-      c-basic-offset 2)
+              c-basic-offset 2)
 (defvaralias 'c-basic-offset 'tab-width)	
 (defvaralias 'cperl-indent-level 'tab-width)
 
@@ -99,6 +99,7 @@
 ;; (setq scroll-preserve-screen-position nil)
 ;; (setq auto-window-vscroll nil)
 ;; (require 'smooth-scroll)
+
 (require 'centered-cursor-mode)
 (global-centered-cursor-mode t)
 (setq scroll-step 1)
@@ -169,3 +170,7 @@
 (load-file "~/.emacs.d/conf_gnus.el")
 (load-file "~/.emacs.d/conf_latex.el")
 
+;; --------------------------------------------------------------------
+
+(put 'narrow-to-region 'disabled nil)
+(put 'narrow-to-page 'disabled nil)
