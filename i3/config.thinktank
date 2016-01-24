@@ -250,12 +250,21 @@ exec nm-applet
 # Buetooth
 exec blueman-applet
 
+# Udiskie (automount)
+exec udiskie
+
 # Notifications
 exec /usr/bin/twmnd
 
 # Background, Composite
 # exec xcompmgr -c -f -F -D3
 exec hsetroot -solid "#000000"
+
+# Unclutter
+exec unclutter
+
+# Redshift
+exec redshift
 
 # Other
 exec /home/fabian/src/startup.sh
