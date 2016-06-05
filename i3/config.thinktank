@@ -17,15 +17,15 @@
   # Control
 
 set $mod Mod4
-set $ws1 number 1: TERM
-set $ws2 number 2: EMACS
-set $ws3 number 3: PDF
-set $ws4 number 4: WEB1
-set $ws5 number 5: WEB2
-set $ws6 number 6: MISC
-set $ws7 number 7: SPOT
-set $ws8 number 8: MISC1
-set $ws9 number 9: MISC1
+set $ws1 number 1 
+set $ws2 number 2 
+set $ws3 number 3 
+set $ws4 number 4 
+set $ws5 number 5 
+set $ws6 number 6 
+set $ws7 number 7 
+set $ws8 number 8 
+set $ws9 number 9 
 
 # Drag floating windows
 floating_modifier $mod
@@ -176,10 +176,11 @@ for_window [class="urxvt"] border 1pixel
 
 # i3bar
 bar {
+  font pango:FontAwesome 8
   mode hide
   position bottom
   # Show tray on ...
-  # tray_output primary
+  tray_output primary
   status_command i3status
   colors {
     background #101010
@@ -251,7 +252,7 @@ exec nm-applet
 exec blueman-applet
 
 # Udiskie (automount)
-exec udiskie
+exec udiskie --tray
 
 # Notifications
 exec /usr/bin/twmnd
