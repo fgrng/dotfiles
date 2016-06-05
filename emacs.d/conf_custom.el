@@ -4,38 +4,41 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-	 (quote
-		("91b1b8ec7d5ff7c11b5dce20423e646f2322dbff8decb3f13dc5c19784317a58" default)))
+   (quote
+    ("91b1b8ec7d5ff7c11b5dce20423e646f2322dbff8decb3f13dc5c19784317a58" default)))
  '(gnus-alias-add-identity-menu t)
  '(gnus-alias-default-identity "posteo")
  '(gnus-alias-identity-alist
-	 (quote
-		(("mathphys" "" "Fabian Grünig <fabian@mathphys.fsk.uni-heidelberg.de>" ""
-			(("Gcc" . message-archive-group-mathphys))
-			"" "")
-		 ("privat" "" "Fabian Grünig <fabi-g@posteo.de>" ""
-			(("Gcc" . message-archive-group-posteo))
-			"" "")
-		 ("anonym" "" "Bibi <bibi@posteo.de>" ""
-			(("Gcc" . message-archive-group-posteo))
-			"" "")
-		 ("stud" "" "Fabian Grünig <gruenig@stud.uni-heidelberg.de>" ""
-			(("Gcc" . message-archive-group-mathphys))
-			"" "")
-		 ("posteo" "" "Fabian Grünig <gruenig@posteo.de>" ""
-			(("Gcc" . message-archive-group-posteo))
-			"" ""))))
+   (quote
+    (("mathphys" "" "Fabian Grünig <fabian@mathphys.fsk.uni-heidelberg.de>" ""
+      (("Gcc" . message-archive-group-mathphys))
+      "" "")
+     ("privat" "" "Fabian Grünig <fabi-g@posteo.de>" ""
+      (("Gcc" . message-archive-group-posteo))
+      "" "")
+     ("anonym" "" "Bibi <bibi@posteo.de>" ""
+      (("Gcc" . message-archive-group-posteo))
+      "" "")
+     ("stud" "" "Fabian Grünig <gruenig@stud.uni-heidelberg.de>" ""
+      (("Gcc" . message-archive-group-mathphys))
+      "" "")
+     ("posteo" "" "Fabian Grünig <gruenig@posteo.de>" ""
+      (("Gcc" . message-archive-group-posteo))
+      "" ""))))
  '(gnutls-min-prime-bits 1024)
+ '(org-agenda-files
+   (quote
+    ("~/doc/org/todos.org" "~/doc/org/tasks.org" "~/doc/org/dates.org" "~/doc/org/refile.org")))
  '(send-mail-function (quote smtpmail-multi-send-it))
  '(smtpmail-default-smtp-server "extmail.urz.uni-heidelberg.de")
  '(smtpmail-multi-accounts
-	 (quote
-		((Posteo "gruenig@posteo.de" "posteo.de" 587 nil starttls nil nil nil)
-		 (URZextmail "cx025" "extmail.urz.uni-heidelberg.de" 25 nil nil nil nil nil))))
+   (quote
+    ((Posteo "gruenig@posteo.de" "posteo.de" 587 nil starttls nil nil nil)
+     (URZextmail "cx025" "extmail.urz.uni-heidelberg.de" 25 nil nil nil nil nil))))
  '(smtpmail-multi-associations
-	 (quote
-		(("^.*uni-heidelberg\\.de.*" URZextmail)
-		 ("^.*posteo\\.de.*" Posteo))))
+   (quote
+    (("^.*uni-heidelberg\\.de.*" URZextmail)
+     ("^.*posteo\\.de.*" Posteo))))
  '(smtpmail-multi-default-account (quote Posteo))
  '(smtpmail-queue-dir "~/.ail/queued-mail/")
  '(smtpmail-smtp-server "posteo.de")

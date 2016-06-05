@@ -13,22 +13,20 @@
                             ("\\.x?html?\\'" . system)
                             ("\\.pdf\\'" . system))))
 
-;; (setq org-modules '(org-bbdb 
-;;                     org-contacts
-;;                     org-gnus
-;;                     org-info
-;;                     org-jsinfo
-;;                     org-habit
-;;                     org-irc
-;;                     org-mouse
-;;                     org-annotate-file
-;;                     org-eval
-;;                     org-expiry
-;;                     org-interactive-query
-;;                     org-man
-;;                     org-panel
-;;                     org-screen
-;;                     org-toc))
+(setq org-modules '(org-gnus
+                    org-info
+                    org-jsinfo
+                    org-habit
+                    org-mouse
+                    org-annotate-file
+                    org-eval
+                    org-expiry
+                    org-interactive-query
+                    org-man
+                    org-panel
+                    org-screen
+                    org-toc
+                    org-archive))
 
 ;; --------------------------------------------------------------------
 ;; --- Files ----------------------------------------------------------
@@ -44,9 +42,11 @@
 
 (setq org-agenda-files (list "~/doc/org/todos.org"
                              "~/doc/org/tasks.org"
-                             "~/doc/org/dates.org"
-                             "~/doc/org/google.org"
                              "~/doc/org/refile.org"
+                             "~/doc/org/calendar/from_privat.org"
+                             "~/doc/org/calendar/from_work.org"
+                             "~/doc/org/calendar/from_university.org"
+                             "~/doc/org/calendar/from_mathphys.org"
                              ))
 
 (setq org-directory "~/doc/org")
@@ -84,7 +84,7 @@
                )
               (
                "S" "SHOPPING" checkitem
-               (file+headline "~/doc/org/location.org" "SHOPPING")
+               (file+headline "~/doc/org/notes.org" "SHOPPING")
                "[ ] %?"
                )
               (
@@ -106,13 +106,11 @@
 
 ; Refile Targets
 (setq my/org-refile-files (list "~/doc/org/todos.org"
-                             "~/doc/org/tasks.org"
-                             "~/doc/org/dates.org"
-                             ))
+                                "~/doc/org/tasks.org"
+                                "~/doc/org/dates.org"
+                                ))
 
 (setq org-refile-targets (quote ((my/org-refile-files :maxlevel . 1))))
-
-
 
 ;; --------------------------------------------------------------------
 ;; --- Stuff ----------------------------------------------------------
@@ -132,6 +130,37 @@
 (setq org-archive-location ".archive/%s_archive::* Archived Tasks")
 
 ;; --------------------------------------------------------------------
+;; --- CalDAV ---------------------------------------------------------
+;; --------------------------------------------------------------------
+
+(setq org-caldav-url "https://cloud.fgrng.de/remote.php/caldav/calendars/fgrng")
+(setq org-caldav-calendar-id "orgmode")
+(setq org-icalendar-timezone "Europe/Berlin")
+
+(setq org-caldav-calendars
+      '(
+        (:calendar-id "personal"
+                      :files ("~/doc/org/todos.org")
+                      :select-tags ("privat")
+                      :inbox "~/doc/org/calendar/from_privat.org")
+        (:calendar-id "fachschaft"
+                      :files ("~/doc/org/todos.org")
+                      :select-tags ("mathphys")
+                      :inbox "~/doc/org/calendar/from_mathphys.org")
+        (:calendar-id "universit%C3%A4t"
+                      :files ("~/doc/org/todos.org")
+                      :select-tags ("university")
+                      :inbox "~/doc/org/calendar/from_university.org")
+        (:calendar-id "arbeit"
+                      :files ("~/doc/org/todos.org")
+                      :select-tags ("work")
+                      :inbox "~/doc/org/calendar/from_work.org")
+        ))
+
+(setq org-caldav-inbox "~/doc/org/dates.org")
+(setq org-caldav-files (list "~/doc/org/dates.org"))
+
+;; --------------------------------------------------------------------
 ;; --- Agenda ---------------------------------------------------------
 ;; --------------------------------------------------------------------
 
@@ -141,6 +170,14 @@
 ;; Do not dim blocked tasks
 (setq org-agenda-dim-blocked-tasks nil)
 
+;; Custom agende prefiv format
+(setq org-agenda-prefix-format
+      '((agenda . " %i %?-12t% s")
+        (timeline . "  % s")
+        (todo . " %i %-12:c")
+        (tags . " %i %-12:c")
+        (search . " %i %-12:c")) )
+      
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
       (quote (

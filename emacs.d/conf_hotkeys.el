@@ -29,7 +29,8 @@
 (global-set-key (kbd "<f11> <f11>") 'org-clock-in)
 (global-set-key (kbd "<f11> r") 'my/visit-org-refile)
 (global-set-key (kbd "<f11> n") 'my/visit-org-notes)
-(global-set-key (kbd "<f11> d") 'my/visit-org-dates)
+(global-set-key (kbd "<f11> t") 'my/visit-org-todos)
+(global-set-key (kbd "<f11> T") 'my/visit-org-tasks)
 (global-set-key [f12] 'my/visit-org-refile)
 
 ;; --- hydra

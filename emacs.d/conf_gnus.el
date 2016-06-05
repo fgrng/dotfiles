@@ -121,8 +121,9 @@
 
 ;; Org&Co in messages
 (add-hook 'message-mode-hook 'orgstruct++-mode 'append)
-(add-hook 'message-mode-hook 'turn-on-auto-fill 'append)
 (add-hook 'message-mode-hook 'orgtbl-mode 'append)
+
+(add-hook 'message-mode-hook 'turn-on-auto-fill 'append)
 (add-hook 'message-mode-hook 'my-message-load-hook 'append)
 (add-hook 'message-mode-hook
           '(lambda () (setq fill-column 75))

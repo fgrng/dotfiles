@@ -46,16 +46,10 @@ fpath=(${HOME}/.rvm/scripts/zsh/Completion/ $fpath)
 # --- Aliases ---------------------------------------------------------
 # ---------------------------------------------------------------------
 
-  rmtex () {
-    find ./ -type f -regex '.*\.(aux|out)'
-  }
+  # LaTeX
 
-  maketex () {
-    pdflatex $1; 
-    biber $1;
-    pdflatex $1;
-    rmtex;
-  } 
+  alias texmake="latexmk -pdf -pdflatex='pdflatex -file-line-error -synctex=1'"
+  alias texwatch="latexmk -pdf -pdflatex='pdflatex -file-line-error -synctex=1' -pvc"
 
 # neo
   alias asdf="setxkbmap lv && xmodmap /home/fabian/.xmodmap_neo && xset -r 51"
