@@ -27,13 +27,21 @@
 ;; --- Mail: Send (offline) -------------------------------------------
 ;; --------------------------------------------------------------------
 
-(require 'smtpmail)
-(require 'smtpmail-multi)
+;; (require 'smtpmail)
+;; (require 'smtpmail-multi)
+;; (setq smtpmail-debug-info t)
+;; (setq smtpmail-debug-verb t)
+;; (setq message-send-mail-function 'smtpmail-multi-send-it)
 
-(setq smtpmail-debug-info t)
-(setq smtpmail-debug-verb t)
+;; This is needed to allow msmtp to do its magic:
+(setq message-sendmail-f-is-evil 't)
 
-(setq message-send-mail-function 'smtpmail-multi-send-it)
+;;need to tell msmtp which account we're using
+(setq message-sendmail-extra-arguments '("--read-envelope-from"))
+
+;; use msmtp-enqueue
+(setq message-send-mail-function 'message-send-mail-with-sendmail)
+(setq sendmail-program "/usr/local/bin/msmtp-enqueue.sh")
 
 ;; --------------------------------------------------------------------
 ;; --- Mail: Fetch (offline) ------------------------------------------
@@ -58,10 +66,13 @@
 (setq gnus-message-archive-method '(nnimap "offline_dovecot"))
 
 (setq message-archive-group-mathphys
-      (format-time-string "nnimap+offline_dovecot:MathPhys.Sent.%Y-%m"))
+      (format-time-string "nnimap+offline_dovecot:MathPhys/Outbox/.%Y-%m"))
 
 (setq message-archive-group-posteo
-      (format-time-string "nnimap+offline_dovecot:Posteo.Sent.%Y-%m"))
+      (format-time-string "nnimap+offline_dovecot:Posteo/Sent/.%Y-%m"))
+
+(setq message-archive-group-phHD
+      (format-time-string "nnimap+offline_dovecot:phHD/Sent/%Y-%m"))
 
 ;; --------------------------------------------------------------------
 ;; --- Group Summary Format -------------------------------------------

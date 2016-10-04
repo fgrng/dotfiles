@@ -10,40 +10,32 @@
  '(gnus-alias-default-identity "posteo")
  '(gnus-alias-identity-alist
    (quote
-    (("mathphys" "" "Fabian Grünig <fabian@mathphys.fsk.uni-heidelberg.de>" ""
+    (("mathphys" nil "Fabian Grünig <fabian@mathphys.fsk.uni-heidelberg.de>" nil
       (("Gcc" . message-archive-group-mathphys))
-      "" "")
-     ("privat" "" "Fabian Grünig <fabi-g@posteo.de>" ""
+      nil nil)
+     ("privat" nil "Fabian Grünig <fabi-g@posteo.de>" nil
       (("Gcc" . message-archive-group-posteo))
-      "" "")
-     ("anonym" "" "Bibi <bibi@posteo.de>" ""
+      nil nil)
+     ("anonym" nil "Bibi <bibi@posteo.de>" nil
       (("Gcc" . message-archive-group-posteo))
-      "" "")
-     ("stud" "" "Fabian Grünig <gruenig@stud.uni-heidelberg.de>" ""
+      nil nil)
+     ("stud" nil "Fabian Grünig <gruenig@stud.uni-heidelberg.de>" nil
       (("Gcc" . message-archive-group-mathphys))
-      "" "")
-     ("posteo" "" "Fabian Grünig <gruenig@posteo.de>" ""
+      nil nil)
+     ("phhd" nil "Fabian Grünig <gruenig@ph-heidelberg.de>" nil
+      (("Gcc" . message-archive-group-phHD))
+      nil "~/.signature-phhd")
+     ("posteo" nil "Fabian Grünig <gruenig@posteo.de>" nil
       (("Gcc" . message-archive-group-posteo))
-      "" ""))))
+      nil nil))))
  '(gnutls-min-prime-bits 1024)
  '(org-agenda-files
    (quote
     ("~/doc/org/todos.org" "~/doc/org/tasks.org" "~/doc/org/dates.org" "~/doc/org/refile.org")))
- '(send-mail-function (quote smtpmail-multi-send-it))
- '(smtpmail-default-smtp-server "extmail.urz.uni-heidelberg.de")
- '(smtpmail-multi-accounts
+ '(package-selected-packages
    (quote
-    ((Posteo "gruenig@posteo.de" "posteo.de" 587 nil starttls nil nil nil)
-     (URZextmail "cx025" "extmail.urz.uni-heidelberg.de" 25 nil nil nil nil nil))))
- '(smtpmail-multi-associations
-   (quote
-    (("^.*uni-heidelberg\\.de.*" URZextmail)
-     ("^.*posteo\\.de.*" Posteo))))
- '(smtpmail-multi-default-account (quote Posteo))
- '(smtpmail-queue-dir "~/.ail/queued-mail/")
- '(smtpmail-smtp-server "posteo.de")
- '(smtpmail-smtp-service 587)
- '(smtpmail-smtp-user "gruenig@posteo.de"))
+    (company-jedi zotelo yard-mode yaml-mode xterm-title xterm-color windresize w3m ujelly-theme sunrise-x-tree sunrise-x-mirror ssh-config-mode smtpmail-multi smooth-scrolling smooth-scroll smart-tabs-mode slim-mode simple-mpc scss-mode sass-mode rvm ruby-tools ruby-block rubocop robe projectile-rails powerline org-ref org-caldav openwith nodejs-repl multi-term minimap mingus markdown-toc markdown-mode+ magit iedit hyde highlight-indentation helm-spotify helm-robe helm-rails helm-projectile helm-package helm-go-package helm-git-grep helm-git-files helm-flycheck helm-company helm-bibtexkey go-projectile go-complete gnus-alias git-rebase-mode git-commit-mode fuzzy flymake-shell flymake-sass flymake-ruby flymake-python-pyflakes flymake-less flymake-go flymake-cursor flymake-css flymake-coffee flymake expand-region ess-view ess-smart-underscore ess-smart-equals ess-R-object-popup ess-R-data-view ebib company-web company-shell company-quickhelp company-math company-inf-ruby company-go company-cmake company-c-headers company-auctex coffee-mode centered-cursor-mode ampc)))
+ '(send-mail-function (quote mailclient-send-it)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

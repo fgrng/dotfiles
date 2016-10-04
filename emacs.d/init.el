@@ -11,7 +11,6 @@
 ;; --------------------------------------------------------------------
 
 ;; Plugins
-(add-to-list 'load-path "~/.elisp/")
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
 (let ((default-directory "~/.emacs.d/elpa/")) 
@@ -33,21 +32,33 @@
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
 (setq delete-old-versions t)
 
+;; Privoxy breaks marmalade.
+(setq url-proxy-services
+      '(("no_proxy" . "^.*")))
+
 ;; Elpa
 (require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/") 
-                         ("sunrise-commander" . "http://joseito.republika.pl/sunrise-commander/")
+(setq package-archives '(;; ("gnu" . "http://elpa.gnu.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
                          ))
-(package-initialize)
+;; (package-initialize)
 
 (require 'ujelly-theme)
 
 ;; --------------------------------------------------------------------
 ;; --- Editor Bevavior ------------------------------------------------
 ;; --------------------------------------------------------------------
+
+; automatically get the correct mode 
+auto-mode-alist (append (list '("\\.S$" . S-mode)
+                              '("\\.s$" . S-mode)
+                              '("\\.R$" . R-mode)
+                              '("\\.r$" . R-mode)
+                              '("\\.emacs" . emacs-lisp-mode)
+                              )
+                        auto-mode-alist)
 
 ;; encoding
 (set-language-environment "UTF-8")
@@ -157,7 +168,6 @@
 ;; --- Load other files -----------------------------------------------
 ;; --------------------------------------------------------------------
 
-;; M-x customize changes to different file
 (setq custom-file "~/.emacs.d/conf_custom.el")
 (load custom-file 'noerror)
 

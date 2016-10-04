@@ -28,8 +28,11 @@
 (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
 
 ;; RefTeX
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex) 
+(add-hook 'LaTeX-mode-hook 'reftex-mode)
 (setq reftex-plug-into-AUCTeX t)
+(setq reftex-bibliography-commands '("bibliography" "nobibliography" "addbibresource"))
+
+(add-hook 'TeX-mode-hook 'zotelo-minor-mode)
 
 ;; ---
 
@@ -44,24 +47,21 @@
 
 ;; --- Auto Complete -------------------------------------------------
 
-(require 'auto-complete-auctex)
+;; (require 'auto-complete-auctex)
 
 ;; ---
 
-(require 'ac-math)
+;; (require 'ac-math)
+;; (add-to-list 'ac-modes 'LaTeX-mode)   ; make auto-complete aware of `latex-mode`
+;; (defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
+;;   (setq ac-sources
+;;      (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
+;;                ac-sources)))
+;; (add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup)
 
-(add-to-list 'ac-modes 'LaTeX-mode)   ; make auto-complete aware of `latex-mode`
+;; ;; ---
 
-(defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
-  (setq ac-sources
-     (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
-               ac-sources)))
-
-(add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup)
-
-;; ---
-
-(ac-flyspell-workaround)
+;; (ac-flyspell-workaround)
 
 ;; --- Commands -------------------------------------------------------
 
