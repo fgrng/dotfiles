@@ -218,7 +218,6 @@ bindkey -e
 
 # bell after cmd
   bellchar=''
-  setterm -blength 0 # Don't REALLY beep
   zle-line-init () { echo -n "$bellchar" }
   zle -N zle-line-init
 

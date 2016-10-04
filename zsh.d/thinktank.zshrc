@@ -26,7 +26,7 @@ fi
 # --- Plugins ---------------------------------------------------------
 
 # define plugins
-plugins=(git emacs bundler screen sudo rails rake-fast)
+plugins=(git emacs bundler screen sudo rake-fast archlinux rsync zsh-navigation-tools zsh_reload)
 
 # rvm completion
 fpath=(${HOME}/.rvm/scripts/zsh/Completion/ $fpath)
@@ -46,7 +46,7 @@ fpath=(${HOME}/.rvm/scripts/zsh/Completion/ $fpath)
 # --- Aliases ---------------------------------------------------------
 # ---------------------------------------------------------------------
 
-  # LaTeX
+# LaTeX
 
   alias texmake="latexmk -pdf -pdflatex='pdflatex -file-line-error -synctex=1'"
   alias texwatch="latexmk -pdf -pdflatex='pdflatex -file-line-error -synctex=1' -pvc"
@@ -62,7 +62,7 @@ fpath=(${HOME}/.rvm/scripts/zsh/Completion/ $fpath)
 # display
   alias vga_on='xrandr --output VGA1 --auto && xrandr --output VGA1 --left-of LVDS1'
   alias vga_same='xrandr --output VGA1 --auto && xrandr --output VGA1 --same-as LVDS1'
-  alias vga_off='xrandr --output LVDS1 --auto && xrandr --output VGA1 --off'
+  alias vga_off='xrandr --output LVDS1 --auto --primary && xrandr --output VGA1 --off && i3-msg restart'
 
   alias hdmi_on='xrandr --output HDMI1 --auto && xrandr --output HDMI1 --left-of LVDS1'
   alias hdmi_off='xrandr --output HDMI1 --off && xrandr --output LVDS1 --auto'

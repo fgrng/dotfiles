@@ -10,29 +10,26 @@
 # - Configuration changes made at runtime are applied to all frames.
 
 
-# if "$ZSH/tools/require_tool.sh" emacs 23 2>/dev/null ; then
+# if "$ZSH/tools/require_tool.sh" emacs 24 2>/dev/null ; then
 if true ; then
     export EMACS_PLUGIN_LAUNCHER="$ZSH/plugins/emacs/emacsclient.sh"
 
     # set EDITOR if not already defined.
     export EDITOR="${EDITOR:-${EMACS_PLUGIN_LAUNCHER}}"
+    export ALTERNAT_EDITOR="nano"
+    
+    # alias emacs="$EMACS_PLUGIN_LAUNCHER --no-wait"
+    alias ems=emacs
 
-    alias emacs="$EMACS_PLUGIN_LAUNCHER --no-wait"
+    # open terminal emacsclient
+    alias emt="$EMACS_PLUGIN_LAUNCHER -nw"
 
     # same than M-x eval but from outside Emacs.
     alias eeval="$EMACS_PLUGIN_LAUNCHER --eval"
-    # create a new X frame
-    alias eframe='emacsclient --alternate-editor "" --create-frame'
-    alias eframec='emacsclient --alternate-editor "" --create-frame --tty'
-    alias eframed='emacsclient --alternate-editor "" --create-frame & disown'
-    
-    alias e=emacs
-    alias em=eframed
-    alias emt=eframec
 
-    # to code all night long
-    alias emasc=emacs
-    alias emcas=emacs
+    # create a new X frame
+    alias eframe='emacsclient --alternate-editor "" --create-frame & disown'
+    alias em=eframe
 
     # Write to standard output the path to the file
     # opened in the current buffer.
@@ -43,27 +40,13 @@ if true ; then
 
     # Write to standard output the directory of the file
     # opened in the the current buffer
-    function edir {
-        local cmd="(let ((buf-name (buffer-file-name (window-buffer))))
-                     (if buf-name (file-name-directory buf-name)))"
-
-        local dir="$($EMACS_PLUGIN_LAUNCHER --eval $cmd | tr -d \")"
-        if [ -n "$dir" ] ;then
-            echo "$dir"
-        else
-            echo "can not deduce current buffer filename." >/dev/stderr
-            return 1
-        fi
-    }
-
-    # Change directory to directory opened in the current buffer
     function ecd {
         local cmd="(let ((buf-name (buffer-file-name (window-buffer))))
                      (if buf-name (file-name-directory buf-name)))"
 
         local dir="$($EMACS_PLUGIN_LAUNCHER --eval $cmd | tr -d \")"
         if [ -n "$dir" ] ;then
-            cd "$dir"
+            echo "$dir"
         else
             echo "can not deduce current buffer filename." >/dev/stderr
             return 1
