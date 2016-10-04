@@ -5,3 +5,5 @@
 	default = simple
 [core]
 	excludesfile = /home/fabian/.gitignore_global
+	editor = /usr/bin/emacs
+	autocrlf = true

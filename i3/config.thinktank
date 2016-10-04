@@ -138,7 +138,7 @@ bindcode 123 exec amixer -c 0 sset Master 1+
 # Lock Screen
 bindcode 160 exec i3lock -d --image=~/.wallpaper2_lock.png
 # IBM Key
-bindcode 156 exec xcalib -invert -alter
+bindcode 156 exec /home/fabian/bin/xrandrmenu # xcalib -invert -alter
 
 # Photo/Headset
 # bindcode 220
@@ -269,11 +269,3 @@ exec redshift
 
 # Other
 exec /home/fabian/src/startup.sh
-
-# --- Applications ----------------------------------------------------
-
-# exec i3-msg workspace "1: TERM"; i3-msg exec urxvtc
-# exec i3-msg workspace "1: TERM"; i3-msg exec urxvtc
-# exec i3-msg workspace "2: EMACS"; i3-msg exec 'emacsclient -c'
-# exec i3-msg workspace "3: WEB"; i3-msg exec iceweasel
-# exec i3-msg workspace "4: STUFF"; i3-msg exec lifearea
