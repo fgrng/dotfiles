@@ -175,10 +175,10 @@ auto-mode-alist (append (list '("\\.S$" . S-mode)
 
 (load-file "~/.emacs.d/conf_functions.el")
 (load-file "~/.emacs.d/conf_hotkeys.el")
-(load-file "~/.emacs.d/conf_stuff.el")
 (load-file "~/.emacs.d/conf_gnus.el")
 (load-file "~/.emacs.d/conf_latex.el")
 (load-file "~/.emacs.d/conf_orgmode.el")
+(load-file "~/.emacs.d/conf_stuff.el")
 
 ;; --------------------------------------------------------------------
 

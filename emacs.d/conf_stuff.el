@@ -273,103 +273,103 @@
 ;; --- Hydra ----------------------------------------------------------
 ;; --------------------------------------------------------------------
 
-;; (defhydra hydra-zoom (:color teal)
-;;   "zoom"
-;;   ("g" text-scale-increase "in")
-;;   ("l" text-scale-decrease "out"))
+(defhydra hydra-zoom (:color teal)
+  "zoom"
+  ("g" text-scale-increase "in")
+  ("l" text-scale-decrease "out"))
 
-;; ;; --------------------------------------------------------------------
+;; --------------------------------------------------------------------
 
-;; (defhydra hydra-projectile-other-window (:color teal)
-;;   "projectile-other-window"
-;;   ("f"  projectile-find-file-other-window        "file")
-;;   ("g"  projectile-find-file-dwim-other-window   "file dwim")
-;;   ("d"  projectile-find-dir-other-window         "dir")
-;;   ("b"  projectile-switch-to-buffer-other-window "buffer")
-;;   ("q"  nil                                      "cancel" :color blue))
+(defhydra hydra-projectile-other-window (:color teal)
+  "projectile-other-window"
+  ("f"  projectile-find-file-other-window        "file")
+  ("g"  projectile-find-file-dwim-other-window   "file dwim")
+  ("d"  projectile-find-dir-other-window         "dir")
+  ("b"  projectile-switch-to-buffer-other-window "buffer")
+  ("q"  nil                                      "cancel" :color blue))
 
-;; (defhydra hydra-projectile (:color teal :hint nil)
-;;   "
-;;      PROJECTILE: %(projectile-project-root)
+(defhydra hydra-projectile (:color teal :hint nil)
+  "
+     PROJECTILE: %(projectile-project-root)
 
-;;      Find File            Search/Tags          Buffers                Cache
-;; ------------------------------------------------------------------------------------------
-;; _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache clear
-;;  _ff_: file dwim       _g_: update gtags      _b_: switch to buffer  _x_: remove known project
-;;  _fd_: file curr dir   _o_: multi-occur     _s-k_: Kill all buffers  _X_: cleanup non-existing
-;;   _r_: recent file                                               ^^^^_z_: cache current
-;;   _d_: dir
+     Find File            Search/Tags          Buffers                Cache
+------------------------------------------------------------------------------------------
+_s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache clear
+ _ff_: file dwim       _g_: update gtags      _b_: switch to buffer  _x_: remove known project
+ _fd_: file curr dir   _o_: multi-occur     _s-k_: Kill all buffers  _X_: cleanup non-existing
+  _r_: recent file                                               ^^^^_z_: cache current
+  _d_: dir
 
-;; "
-;;   ("a"   projectile-ag)
-;;   ("b"   projectile-switch-to-buffer)
-;;   ("c"   projectile-invalidate-cache)
-;;   ("d"   projectile-find-dir)
-;;   ("s-f" projectile-find-file)
-;;   ("ff"  projectile-find-file-dwim)
-;;   ("fd"  projectile-find-file-in-directory)
-;;   ("g"   ggtags-update-tags)
-;;   ("s-g" ggtags-update-tags)
-;;   ("i"   projectile-ibuffer)
-;;   ("K"   projectile-kill-buffers)
-;;   ("s-k" projectile-kill-buffers)
-;;   ("m"   projectile-multi-occur)
-;;   ("o"   projectile-multi-occur)
-;;   ("s-p" projectile-switch-project "switch project")
-;;   ("p"   projectile-switch-project)
-;;   ("s"   projectile-switch-project)
-;;   ("r"   projectile-recentf)
-;;   ("x"   projectile-remove-known-project)
-;;   ("X"   projectile-cleanup-known-projects)
-;;   ("z"   projectile-cache-current-file)
-;;   ("`"   hydra-projectile-other-window/body "other window")
-;;   ("q"   nil "cancel" :color blue))
+"
+  ("a"   projectile-ag)
+  ("b"   projectile-switch-to-buffer)
+  ("c"   projectile-invalidate-cache)
+  ("d"   projectile-find-dir)
+  ("s-f" projectile-find-file)
+  ("ff"  projectile-find-file-dwim)
+  ("fd"  projectile-find-file-in-directory)
+  ("g"   ggtags-update-tags)
+  ("s-g" ggtags-update-tags)
+  ("i"   projectile-ibuffer)
+  ("K"   projectile-kill-buffers)
+  ("s-k" projectile-kill-buffers)
+  ("m"   projectile-multi-occur)
+  ("o"   projectile-multi-occur)
+  ("s-p" projectile-switch-project "switch project")
+  ("p"   projectile-switch-project)
+  ("s"   projectile-switch-project)
+  ("r"   projectile-recentf)
+  ("x"   projectile-remove-known-project)
+  ("X"   projectile-cleanup-known-projects)
+  ("z"   projectile-cache-current-file)
+  ("`"   hydra-projectile-other-window/body "other window")
+  ("q"   nil "cancel" :color blue))
 
-;; ;; --------------------------------------------------------------------
+;; --------------------------------------------------------------------
 
-;; (defhydra hydra-yank-pop ()
-;;   "yank"
-;;   ("C-y" yank nil)
-;;   ("M-y" yank-pop nil)
-;;   ("y" (yank-pop 1) "next")
-;;   ("Y" (yank-pop -1) "prev")
-;;   ("l" helm-show-kill-ring "list" :color blue))   ; or browse-kill-ring
+(defhydra hydra-yank-pop ()
+  "yank"
+  ("C-y" yank nil)
+  ("M-y" yank-pop nil)
+  ("y" (yank-pop 1) "next")
+  ("Y" (yank-pop -1) "prev")
+  ("l" helm-show-kill-ring "list" :color blue))   ; or browse-kill-ring
 
-;; ;; --------------------------------------------------------------------
+;; --------------------------------------------------------------------
 
-;; (defhydra hydra-eval (:color blue :columns 8)
-;;   "Eval"
-;;   ("e" eval-expression "expression")
-;;   ("d" eval-defun "defun")
-;;   ("r" eval-region "region")
-;;   ("b" eval-buffer "buffer")
-;;   ("l" eval-last-sexp "last sexp")
-;;   ("s" async-shell-command "shell-command"))
+(defhydra hydra-eval (:color blue :columns 8)
+  "Eval"
+  ("e" eval-expression "expression")
+  ("d" eval-defun "defun")
+  ("r" eval-region "region")
+  ("b" eval-buffer "buffer")
+  ("l" eval-last-sexp "last sexp")
+  ("s" async-shell-command "shell-command"))
 
-;; ;; --------------------------------------------------------------------
+;; --------------------------------------------------------------------
 
-;; (defhydra hydra-magit (:color blue :columns 8)
-;;   "Magit"
-;;   ("s" magit-status "status")
-;;   ("l" magit-log "log")
-;;   ("d" magit-diff "diff")
-;;   ("c" magit-commit "commit")
-;;   ("C" magit-checkout "checkout")
-;;   ("v" magit-branch-manager "branch manager")
-;;   ("m" magit-merge "merge")
-;;   ("!" magit-git-command "command")
-;;   ("$" magit-process "process"))
+(defhydra hydra-magit (:color blue :columns 8)
+  "Magit"
+  ("s" magit-status "status")
+  ("l" magit-log "log")
+  ("d" magit-diff "diff")
+  ("c" magit-commit "commit")
+  ("C" magit-checkout "checkout")
+  ("v" magit-branch-manager "branch manager")
+  ("m" magit-merge "merge")
+  ("!" magit-git-command "command")
+  ("$" magit-process "process"))
 
-;; ;; --------------------------------------------------------------------
+;; --------------------------------------------------------------------
 
-;; (defhydra hydra-gnus-reply (:color blue)
-;;   "reply"
-;;   ("o" gnus-summary-reply-with-original "one")
-;;   ("O" gnus-summary-reply)
-;;   ("a" gnus-summary-wide-reply-with-original "all")
-;;   ("A" gnus-summary-wide-reply)
-;;   ("u" gnus-summary-very-wide-reply-with-original "universe")
-;;   ("U" gnus-summary-very-wide-reply)
-;;   ("q" nil "quit"))
+(defhydra hydra-gnus-reply (:color blue)
+  "reply"
+  ("o" gnus-summary-reply-with-original "one")
+  ("O" gnus-summary-reply)
+  ("a" gnus-summary-wide-reply-with-original "all")
+  ("A" gnus-summary-wide-reply)
+  ("u" gnus-summary-very-wide-reply-with-original "universe")
+  ("U" gnus-summary-very-wide-reply)
+  ("q" nil "quit"))
 
-;; (define-key gnus-summary-mode-map "r" 'hydra-gnus-reply/body)
+(define-key gnus-summary-mode-map "r" 'hydra-gnus-reply/body)

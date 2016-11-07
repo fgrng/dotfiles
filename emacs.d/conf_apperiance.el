@@ -15,7 +15,7 @@
 ;; (color-theme-initialize)
 
 ;; Font
-(set-default-font "Inconsolata-10")
+(set-default-font "Inconsolata-11")
 
 ;; Theme
 (load-theme 'ujelly t)
