@@ -1,0 +1,72 @@
+### MathPhys ########################################################
+
+IMAPAccount mathphys
+Host mathphys.fsk.uni-heidelberg.de
+User fabian
+PassCmd "gkeyring --output secret -p service=mbsync -p username=fabian@mathphys.fsk.uni-heidelberg.de"
+SSLType IMAPS
+CertificateFile ~/.cert/mathphys.fsk.uni-heidelberg.de.pem
+
+IMAPStore mathphys-remote
+Account mathphys
+
+MaildirStore mathphys-local
+# The trailing "/" is important
+Path ~/Maildir/MathPhys/
+Inbox ~/Maildir/MathPhys/INBOX
+
+Channel mathphys
+Master :mathphys-remote:
+Slave :mathphys-local:
+Patterns * !"Trash" !"Public" !"Papierkorb" !"Junk" !"Gesendet" !"Drafts" !"Sent" !"Entw&APw-rfe"
+Create Both
+Remove None
+SyncState *
+
+### Posteo ##########################################################
+
+IMAPAccount posteo
+Host posteo.de
+User gruenig@posteo.de
+PassCmd "gkeyring --output secret -p service=mbsync -p username=gruenig@posteo.de"
+SSLType IMAPS
+# CertificateFile ~/.cert/
+
+IMAPStore posteo-remote
+Account posteo
+
+MaildirStore posteo-local
+# The trailing "/" is important
+Path ~/Maildir/Posteo/
+Inbox ~/Maildir/Posteo/INBOX
+
+Channel posteo
+Master :posteo-remote:
+Slave :posteo-local:
+Patterns * !"Trash" !"Drafts"
+Create Both
+SyncState *
+
+### phHD ############################################################
+
+IMAPAccount phHD
+Host imap.ph-heidelberg.de
+User gruenig
+PassCmd "gkeyring --output secret -p service=mbsync -p username=gruenig@ph-heidelberg.de"
+SSLType IMAPS
+# CertificateFile ~/.cert/
+
+IMAPStore phHD-remote
+Account phHD
+
+MaildirStore phHD-local
+# The trailing "/" is important
+Path ~/Maildir/phHD/
+Inbox ~/Maildir/phHD/INBOX
+
+Channel phHD
+Master :phHD-remote:
+Slave :phHD-local:
+Patterns * !"Drafts" !"Shared Folders"
+Create Both
+SyncState *
