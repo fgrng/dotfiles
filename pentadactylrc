@@ -33,8 +33,8 @@ command! org-cap -javascript
    \ + encodeURIComponent(buffer.title) + '"')
 
 " Searching
-map -builtin gg :open<SPACE>google<SPACE>
-map -builtin gt :tabopen<SPACE>google<SPACE>
+map -builtin gg :open<SPACE>doogle<SPACE>
+map -builtin gt :tabopen<SPACE>doogle<SPACE>
 map -builtin aa :open<SPACE>archlinux-wiki<SPACE>
 map -builtin at :tabopen<SPACE>archlinux-wiki<SPACE>
 
