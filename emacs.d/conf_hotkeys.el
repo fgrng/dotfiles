@@ -42,6 +42,10 @@
 (global-set-key (kbd "M-y") 'hydra-yank-pop/yank-pop)
 (global-set-key (kbd "C-y") 'hydra-yank-pop/yank)
 
+;; --- latex / auctex
+;; (define-key LaTeX-mode-map (kbd "C-c )") 'reftex-hyperref-autoref)
+;; (define-key reftex-mode-map (kbd "C-c )") 'reftex-hyperref-autoref)
+
 ;; --- Meta (i3-like?)
 (global-unset-key (kbd "M-<return>"))
 (global-set-key (kbd "M-<return>") 'multi-term-dedicated-toggle)
@@ -102,3 +106,18 @@
 (global-set-key (kbd "C-M-r") 'org-capture)
 (global-set-key (kbd "C-M-n") 'message-mail-other-window)
 
+;; --- Hotkey Hooks
+
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (define-key LaTeX-mode-map (kbd "C-c )") 'reftex-hyperref-autoref)
+            (define-key reftex-mode-map (kbd "C-c )") 'reftex-hyperref-autoref)
+            ))
+
+(add-hook 'gnus-started-hook
+          (lambda ()
+            (define-key gnus-summary-mode-map "r" 'hydra-gnus-reply/body)
+            ))
+
+            
+ 

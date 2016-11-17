@@ -90,61 +90,11 @@
 (setq multi-term-dedicated-select-after-open-p t)
 
 ;; --------------------------------------------------------------------
-;; --- Buffers --------------------------------------------------------
-;; --------------------------------------------------------------------
-
-;; Switch Buffer with iSwitchBuffer
-;; (iswitchb-mode 1)
-;; (setq iswitchb-buffer-ignore '("^ "
-;;                                "*imap log*" 
-;;                                "*gnus trace*" 
-;;                                "*Calendar*" 
-;;                                "*Completions*"
-;;                                "*Messages*"
-;;                                "*Buffer List*"
-;;                                "*Mingus*"
-;;                                "*Mingus Help*"
-;;                                "*Mingus Browser*"))
-
-;; (add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
-
-;; --------------------------------------------------------------------
-;; --- Template Snippets ----------------------------------------------
-;; --------------------------------------------------------------------
-
-;; (setq default-abbrev-mode t)
-;; (quietly-read-abbrev-file)
-;; (setq save-abbrevs t)
-
-;; (require 'yasnippet)
-
-;; (setq yas-snippet-dirs
-;;       '("~/.emacs.d/snippets"
-;;         "~/src/yasnippet-snippets"
-;; 				))
-
-;; (yas-global-mode nil)
-
-;; --------------------------------------------------------------------
 ;; --- Stuff ----------------------------------------------------------
 ;; --------------------------------------------------------------------
 
 (put 'narrow-to-region 'disabled nil)
-
-;; cycle through completion
-;; (require 'icicles)
-;; (icy-mode 1) 
-
-;; expand region
 (require 'expand-region)
-
-;; line numbers
-;; (global-linum-mode 1)
-;; (setq linum-format "%5d")
-
-;; markdown 
-;; (autoload 'markdown-mode "markdown-mode"
-;;    "Major mode for editing Markdown files" t)
 
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . hyde-markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . hyde-markdown-mode))
@@ -164,28 +114,8 @@
     (message "Dictionary switched from %s to %s" dic change)
     ))
 
-;; Auto Completion
-;; (require 'auto-complete-config)
-;; (add-to-list 'ac-dictionary-directories "/home/fabian/.elisp/ac-dict")
-;; (ac-config-default)
+;; Global completion
 (add-hook 'after-init-hook 'global-company-mode)
-
-;; Smart Tabs
-;; (smart-tabs-insinuate 'javascript 'python 'ruby)
-
-;; --------------------------------------------------------------------
-;; --- IDO ------------------------------------------------------------
-;; --------------------------------------------------------------------
-
-(require 'ido)
-(ido-mode t)
-(setq ido-enable-prefix nil
-      ido-enable-flex-matching t
-      ido-case-fold nil
-      ido-auto-merge-work-directories-length -1
-      ido-create-new-buffer 'always
-      ido-use-filename-at-point nil
-      ido-max-prospects 10)
 
 ;; --------------------------------------------------------------------
 ;; --- Helm -----------------------------------------------------------
@@ -229,45 +159,6 @@
 
 (require 'hyde)
 (setq hyde-home "~/projects/awesome_blog")
-
-;; --------------------------------------------------------------------
-;; --- FlySpell -------------------------------------------------------
-;; --------------------------------------------------------------------
-
-(defun flyspell-emacs-popup-textual (event poss word)
-  "A textual flyspell popup menu."
-  (require 'popup)
-  (let* ((corrects (if flyspell-sort-corrections
-		       (sort (car (cdr (cdr poss))) 'string<)
-		     (car (cdr (cdr poss)))))
-	 (cor-menu (if (consp corrects)
-		       (mapcar (lambda (correct)
-				 (list correct correct))
-			       corrects)
-		     '()))
-	 (affix (car (cdr (cdr (cdr poss)))))
-	 show-affix-info
-	 (base-menu  (let ((save (if (and (consp affix) show-affix-info)
-				     (list
-				      (list (concat "Save affix: " (car affix))
-					    'save)
-				      '("Accept (session)" session)
-				      '("Accept (buffer)" buffer))
-				   '(("Save word" save)
-				     ("Accept (session)" session)
-				     ("Accept (buffer)" buffer)))))
-		       (if (consp cor-menu)
-			   (append cor-menu (cons "" save))
-			 save)))
-	 (menu (mapcar
-		(lambda (arg) (if (consp arg) (car arg) arg))
-		base-menu)))
-    (cadr (assoc (popup-menu* menu :scroll-bar t) base-menu))))
-
-(eval-after-load "flyspell"
-  '(progn
-     (fset 'flyspell-emacs-popup 'flyspell-emacs-popup-textual)))
-
 
 ;; --------------------------------------------------------------------
 ;; --- Hydra ----------------------------------------------------------
@@ -371,5 +262,3 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   ("u" gnus-summary-very-wide-reply-with-original "universe")
   ("U" gnus-summary-very-wide-reply)
   ("q" nil "quit"))
-
-(define-key gnus-summary-mode-map "r" 'hydra-gnus-reply/body)

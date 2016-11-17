@@ -47,6 +47,9 @@
 
 ;; --- Auto Complete -------------------------------------------------
 
+(require 'company-auctex)
+(company-auctex-init)
+
 ;; (require 'auto-complete-auctex)
 
 ;; ---
