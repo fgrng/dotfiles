@@ -90,61 +90,11 @@
 (setq multi-term-dedicated-select-after-open-p t)
 
 ;; --------------------------------------------------------------------
-;; --- Buffers --------------------------------------------------------
-;; --------------------------------------------------------------------
-
-;; Switch Buffer with iSwitchBuffer
-;; (iswitchb-mode 1)
-;; (setq iswitchb-buffer-ignore '("^ "
-;;                                "*imap log*" 
-;;                                "*gnus trace*" 
-;;                                "*Calendar*" 
-;;                                "*Completions*"
-;;                                "*Messages*"
-;;                                "*Buffer List*"
-;;                                "*Mingus*"
-;;                                "*Mingus Help*"
-;;                                "*Mingus Browser*"))
-
-;; (add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
-
-;; --------------------------------------------------------------------
-;; --- Template Snippets ----------------------------------------------
-;; --------------------------------------------------------------------
-
-;; (setq default-abbrev-mode t)
-;; (quietly-read-abbrev-file)
-;; (setq save-abbrevs t)
-
-;; (require 'yasnippet)
-
-;; (setq yas-snippet-dirs
-;;       '("~/.emacs.d/snippets"
-;;         "~/src/yasnippet-snippets"
-;; 				))
-
-;; (yas-global-mode nil)
-
-;; --------------------------------------------------------------------
 ;; --- Stuff ----------------------------------------------------------
 ;; --------------------------------------------------------------------
 
 (put 'narrow-to-region 'disabled nil)
-
-;; cycle through completion
-;; (require 'icicles)
-;; (icy-mode 1) 
-
-;; expand region
 (require 'expand-region)
-
-;; line numbers
-;; (global-linum-mode 1)
-;; (setq linum-format "%5d")
-
-;; markdown 
-;; (autoload 'markdown-mode "markdown-mode"
-;;    "Major mode for editing Markdown files" t)
 
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . hyde-markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . hyde-markdown-mode))
@@ -164,28 +114,8 @@
     (message "Dictionary switched from %s to %s" dic change)
     ))
 
-;; Auto Completion
-;; (require 'auto-complete-config)
-;; (add-to-list 'ac-dictionary-directories "/home/fabian/.elisp/ac-dict")
-;; (ac-config-default)
+;; Global completion
 (add-hook 'after-init-hook 'global-company-mode)
-
-;; Smart Tabs
-;; (smart-tabs-insinuate 'javascript 'python 'ruby)
-
-;; --------------------------------------------------------------------
-;; --- IDO ------------------------------------------------------------
-;; --------------------------------------------------------------------
-
-(require 'ido)
-(ido-mode t)
-(setq ido-enable-prefix nil
-      ido-enable-flex-matching t
-      ido-case-fold nil
-      ido-auto-merge-work-directories-length -1
-      ido-create-new-buffer 'always
-      ido-use-filename-at-point nil
-      ido-max-prospects 10)
 
 ;; --------------------------------------------------------------------
 ;; --- Helm -----------------------------------------------------------
@@ -231,145 +161,104 @@
 (setq hyde-home "~/projects/awesome_blog")
 
 ;; --------------------------------------------------------------------
-;; --- FlySpell -------------------------------------------------------
-;; --------------------------------------------------------------------
-
-(defun flyspell-emacs-popup-textual (event poss word)
-  "A textual flyspell popup menu."
-  (require 'popup)
-  (let* ((corrects (if flyspell-sort-corrections
-		       (sort (car (cdr (cdr poss))) 'string<)
-		     (car (cdr (cdr poss)))))
-	 (cor-menu (if (consp corrects)
-		       (mapcar (lambda (correct)
-				 (list correct correct))
-			       corrects)
-		     '()))
-	 (affix (car (cdr (cdr (cdr poss)))))
-	 show-affix-info
-	 (base-menu  (let ((save (if (and (consp affix) show-affix-info)
-				     (list
-				      (list (concat "Save affix: " (car affix))
-					    'save)
-				      '("Accept (session)" session)
-				      '("Accept (buffer)" buffer))
-				   '(("Save word" save)
-				     ("Accept (session)" session)
-				     ("Accept (buffer)" buffer)))))
-		       (if (consp cor-menu)
-			   (append cor-menu (cons "" save))
-			 save)))
-	 (menu (mapcar
-		(lambda (arg) (if (consp arg) (car arg) arg))
-		base-menu)))
-    (cadr (assoc (popup-menu* menu :scroll-bar t) base-menu))))
-
-(eval-after-load "flyspell"
-  '(progn
-     (fset 'flyspell-emacs-popup 'flyspell-emacs-popup-textual)))
-
-
-;; --------------------------------------------------------------------
 ;; --- Hydra ----------------------------------------------------------
 ;; --------------------------------------------------------------------
 
-;; (defhydra hydra-zoom (:color teal)
-;;   "zoom"
-;;   ("g" text-scale-increase "in")
-;;   ("l" text-scale-decrease "out"))
+(defhydra hydra-zoom (:color teal)
+  "zoom"
+  ("g" text-scale-increase "in")
+  ("l" text-scale-decrease "out"))
 
-;; ;; --------------------------------------------------------------------
+;; --------------------------------------------------------------------
 
-;; (defhydra hydra-projectile-other-window (:color teal)
-;;   "projectile-other-window"
-;;   ("f"  projectile-find-file-other-window        "file")
-;;   ("g"  projectile-find-file-dwim-other-window   "file dwim")
-;;   ("d"  projectile-find-dir-other-window         "dir")
-;;   ("b"  projectile-switch-to-buffer-other-window "buffer")
-;;   ("q"  nil                                      "cancel" :color blue))
+(defhydra hydra-projectile-other-window (:color teal)
+  "projectile-other-window"
+  ("f"  projectile-find-file-other-window        "file")
+  ("g"  projectile-find-file-dwim-other-window   "file dwim")
+  ("d"  projectile-find-dir-other-window         "dir")
+  ("b"  projectile-switch-to-buffer-other-window "buffer")
+  ("q"  nil                                      "cancel" :color blue))
 
-;; (defhydra hydra-projectile (:color teal :hint nil)
-;;   "
-;;      PROJECTILE: %(projectile-project-root)
+(defhydra hydra-projectile (:color teal :hint nil)
+  "
+     PROJECTILE: %(projectile-project-root)
 
-;;      Find File            Search/Tags          Buffers                Cache
-;; ------------------------------------------------------------------------------------------
-;; _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache clear
-;;  _ff_: file dwim       _g_: update gtags      _b_: switch to buffer  _x_: remove known project
-;;  _fd_: file curr dir   _o_: multi-occur     _s-k_: Kill all buffers  _X_: cleanup non-existing
-;;   _r_: recent file                                               ^^^^_z_: cache current
-;;   _d_: dir
+     Find File            Search/Tags          Buffers                Cache
+------------------------------------------------------------------------------------------
+_s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache clear
+ _ff_: file dwim       _g_: update gtags      _b_: switch to buffer  _x_: remove known project
+ _fd_: file curr dir   _o_: multi-occur     _s-k_: Kill all buffers  _X_: cleanup non-existing
+  _r_: recent file                                               ^^^^_z_: cache current
+  _d_: dir
 
-;; "
-;;   ("a"   projectile-ag)
-;;   ("b"   projectile-switch-to-buffer)
-;;   ("c"   projectile-invalidate-cache)
-;;   ("d"   projectile-find-dir)
-;;   ("s-f" projectile-find-file)
-;;   ("ff"  projectile-find-file-dwim)
-;;   ("fd"  projectile-find-file-in-directory)
-;;   ("g"   ggtags-update-tags)
-;;   ("s-g" ggtags-update-tags)
-;;   ("i"   projectile-ibuffer)
-;;   ("K"   projectile-kill-buffers)
-;;   ("s-k" projectile-kill-buffers)
-;;   ("m"   projectile-multi-occur)
-;;   ("o"   projectile-multi-occur)
-;;   ("s-p" projectile-switch-project "switch project")
-;;   ("p"   projectile-switch-project)
-;;   ("s"   projectile-switch-project)
-;;   ("r"   projectile-recentf)
-;;   ("x"   projectile-remove-known-project)
-;;   ("X"   projectile-cleanup-known-projects)
-;;   ("z"   projectile-cache-current-file)
-;;   ("`"   hydra-projectile-other-window/body "other window")
-;;   ("q"   nil "cancel" :color blue))
+"
+  ("a"   projectile-ag)
+  ("b"   projectile-switch-to-buffer)
+  ("c"   projectile-invalidate-cache)
+  ("d"   projectile-find-dir)
+  ("s-f" projectile-find-file)
+  ("ff"  projectile-find-file-dwim)
+  ("fd"  projectile-find-file-in-directory)
+  ("g"   ggtags-update-tags)
+  ("s-g" ggtags-update-tags)
+  ("i"   projectile-ibuffer)
+  ("K"   projectile-kill-buffers)
+  ("s-k" projectile-kill-buffers)
+  ("m"   projectile-multi-occur)
+  ("o"   projectile-multi-occur)
+  ("s-p" projectile-switch-project "switch project")
+  ("p"   projectile-switch-project)
+  ("s"   projectile-switch-project)
+  ("r"   projectile-recentf)
+  ("x"   projectile-remove-known-project)
+  ("X"   projectile-cleanup-known-projects)
+  ("z"   projectile-cache-current-file)
+  ("`"   hydra-projectile-other-window/body "other window")
+  ("q"   nil "cancel" :color blue))
 
-;; ;; --------------------------------------------------------------------
+;; --------------------------------------------------------------------
 
-;; (defhydra hydra-yank-pop ()
-;;   "yank"
-;;   ("C-y" yank nil)
-;;   ("M-y" yank-pop nil)
-;;   ("y" (yank-pop 1) "next")
-;;   ("Y" (yank-pop -1) "prev")
-;;   ("l" helm-show-kill-ring "list" :color blue))   ; or browse-kill-ring
+(defhydra hydra-yank-pop ()
+  "yank"
+  ("C-y" yank nil)
+  ("M-y" yank-pop nil)
+  ("y" (yank-pop 1) "next")
+  ("Y" (yank-pop -1) "prev")
+  ("l" helm-show-kill-ring "list" :color blue))   ; or browse-kill-ring
 
-;; ;; --------------------------------------------------------------------
+;; --------------------------------------------------------------------
 
-;; (defhydra hydra-eval (:color blue :columns 8)
-;;   "Eval"
-;;   ("e" eval-expression "expression")
-;;   ("d" eval-defun "defun")
-;;   ("r" eval-region "region")
-;;   ("b" eval-buffer "buffer")
-;;   ("l" eval-last-sexp "last sexp")
-;;   ("s" async-shell-command "shell-command"))
+(defhydra hydra-eval (:color blue :columns 8)
+  "Eval"
+  ("e" eval-expression "expression")
+  ("d" eval-defun "defun")
+  ("r" eval-region "region")
+  ("b" eval-buffer "buffer")
+  ("l" eval-last-sexp "last sexp")
+  ("s" async-shell-command "shell-command"))
 
-;; ;; --------------------------------------------------------------------
+;; --------------------------------------------------------------------
 
-;; (defhydra hydra-magit (:color blue :columns 8)
-;;   "Magit"
-;;   ("s" magit-status "status")
-;;   ("l" magit-log "log")
-;;   ("d" magit-diff "diff")
-;;   ("c" magit-commit "commit")
-;;   ("C" magit-checkout "checkout")
-;;   ("v" magit-branch-manager "branch manager")
-;;   ("m" magit-merge "merge")
-;;   ("!" magit-git-command "command")
-;;   ("$" magit-process "process"))
+(defhydra hydra-magit (:color blue :columns 8)
+  "Magit"
+  ("s" magit-status "status")
+  ("l" magit-log "log")
+  ("d" magit-diff "diff")
+  ("c" magit-commit "commit")
+  ("C" magit-checkout "checkout")
+  ("v" magit-branch-manager "branch manager")
+  ("m" magit-merge "merge")
+  ("!" magit-git-command "command")
+  ("$" magit-process "process"))
 
-;; ;; --------------------------------------------------------------------
+;; --------------------------------------------------------------------
 
-;; (defhydra hydra-gnus-reply (:color blue)
-;;   "reply"
-;;   ("o" gnus-summary-reply-with-original "one")
-;;   ("O" gnus-summary-reply)
-;;   ("a" gnus-summary-wide-reply-with-original "all")
-;;   ("A" gnus-summary-wide-reply)
-;;   ("u" gnus-summary-very-wide-reply-with-original "universe")
-;;   ("U" gnus-summary-very-wide-reply)
-;;   ("q" nil "quit"))
-
-;; (define-key gnus-summary-mode-map "r" 'hydra-gnus-reply/body)
+(defhydra hydra-gnus-reply (:color blue)
+  "reply"
+  ("o" gnus-summary-reply-with-original "one")
+  ("O" gnus-summary-reply)
+  ("a" gnus-summary-wide-reply-with-original "all")
+  ("A" gnus-summary-wide-reply)
+  ("u" gnus-summary-very-wide-reply-with-original "universe")
+  ("U" gnus-summary-very-wide-reply)
+  ("q" nil "quit"))
