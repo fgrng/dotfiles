@@ -1,7 +1,7 @@
 ### MathPhys ########################################################
 
 IMAPAccount mathphys
-Host mathphys.fsk.uni-heidelberg.de
+Host mail.mathphys.stura.uni-heidelberg.de
 User fabian
 PassCmd "gkeyring --output secret -p service=mbsync -p username=fabian@mathphys.fsk.uni-heidelberg.de"
 SSLType IMAPS

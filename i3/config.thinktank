@@ -136,7 +136,7 @@ bindcode 122 exec amixer -c 0 sset Master 1-
 # Vol Up (123)
 bindcode 123 exec amixer -c 0 sset Master 1+
 # Lock Screen
-bindcode 160 exec i3lock -d --image=~/.wallpaper2_lock.png
+bindcode 160 exec i3lock -c 000000
 # IBM Key
 bindcode 156 exec /home/fabian/bin/xrandrmenu # xcalib -invert -alter
 
