@@ -14,6 +14,7 @@ MaildirStore mathphys-local
 # The trailing "/" is important
 Path ~/Maildir/MathPhys/
 Inbox ~/Maildir/MathPhys/INBOX
+SubFolders Verbatim
 
 Channel mathphys
 Master :mathphys-remote:
@@ -39,6 +40,7 @@ MaildirStore posteo-local
 # The trailing "/" is important
 Path ~/Maildir/Posteo/
 Inbox ~/Maildir/Posteo/INBOX
+SubFolders Verbatim
 
 Channel posteo
 Master :posteo-remote:
@@ -63,10 +65,37 @@ MaildirStore phHD-local
 # The trailing "/" is important
 Path ~/Maildir/phHD/
 Inbox ~/Maildir/phHD/INBOX
+SubFolders Verbatim
 
 Channel phHD
 Master :phHD-remote:
 Slave :phHD-local:
 Patterns * !"Drafts" !"Shared Folders"
 Create Both
+SyncState *
+
+### HAImail ########################################################
+
+IMAPAccount haimail
+Host mail.alumni.uni-heidelberg.de
+User fabian.gruenig@alumni.uni-heidelberg.de
+PassCmd "gkeyring --output secret -p service=mbsync -p username=fabian.gruenig@alumni.uni-heidelberg.de"
+SSLType IMAPS
+# CertificateFile ~/.cert/
+
+IMAPStore haimail-remote
+Account haimail
+
+MaildirStore haimail-local
+# The trailing "/" is important
+Path ~/Maildir/HAImail/
+Inbox ~/Maildir/HAImail/INBOX
+SubFolders Verbatim
+
+Channel haimail
+Master :haimail-remote:
+Slave :haimail-local:
+# Patterns * !"Trash" !"Public" !"Papierkorb" !"Junk" !"Gesendet" !"Drafts" !"Sent" !"Entw&APw-rfe"
+Create Both
+Remove None
 SyncState *
