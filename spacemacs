@@ -31,6 +31,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     csv
+     yaml
      ruby
      ruby-on-rails
      html
@@ -39,6 +41,8 @@ values."
      go
      c-c++
      emacs-lisp
+     ess
+     ipython-notebook
      ;; ----------------------------------------------------------------
      helm
      auto-completion
@@ -64,6 +68,7 @@ values."
      gnus-alias
      w3m
      edit-server
+     ein
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
