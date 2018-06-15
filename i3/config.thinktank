@@ -17,15 +17,15 @@
   # Control
 
 set $mod Mod4
-set $ws1 number 1 
-set $ws2 number 2 
-set $ws3 number 3 
-set $ws4 number 4 
-set $ws5 number 5 
-set $ws6 number 6 
-set $ws7 number 7 
-set $ws8 number 8 
-set $ws9 number 9 
+set $ws1 1 
+set $ws2 2 
+set $ws3 3 
+set $ws4 4 
+set $ws5 5 
+set $ws6 6 
+set $ws7 7 
+set $ws8 8 
+set $ws9 9 
 
 # Drag floating windows
 floating_modifier $mod
@@ -89,8 +89,9 @@ bindcode $mod+Shift+16 move workspace $ws7
 bindcode $mod+Shift+17 move workspace $ws8
 bindcode $mod+Shift+18 move workspace $ws9
 
-# Move Workspaces to Output
-bindcode $mod+24 move workspace to output right
+# Move Workspaces to Output ()
+bindcode $mod+Shift+30 move workspace to output left
+bindcode $mod+Shift+33 move workspace to output right
 
 # Scratchpad (0)
 bindcode $mod+Shift+19 move scratchpad
@@ -167,6 +168,7 @@ client.unfocused	#440000 #440000	#C0C0C0
 
 # ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--9-80-75-75-c-50-iso10646-1
+# font pango:FontAwesome 8
 
 # New windowstyle
 new_window 1pixel
@@ -176,7 +178,7 @@ for_window [class="urxvt"] border 1pixel
 
 # i3bar
 bar {
-  font pango:FontAwesome 8
+  font pango:FontAwesome 11px
   mode hide
   position bottom
   # Show tray on ...
@@ -217,12 +219,18 @@ workspace_layout default
 
 # --- Assignments -----------------------------------------------------
 
-# assign iceweasel → 2
+assign [class="Google-chrome"] → workspace $ws5
+assign [class="Firefox"] → workspace $ws4
+assign [class="Spotify"] → workspace $ws7
 
-# workspace $ws1 output VGA1
-# workspace $ws2 output VGA1
+# workspace $ws1 output DP2
+# workspace $ws2 output DP2
 # workspace $ws3 output VGA1
-# workspace $ws4 output VGA1
+# workspace $ws4 output DP2
+# workspace $ws5 output DP2
+
+# workspace $ws6 output VGA1
+# workspace $ws7 output 
 
 # ---------------------------------------------------------------------
 # --- Startup ---------------------------------------------------------
@@ -256,6 +264,10 @@ exec udiskie --tray
 
 # Notifications
 exec /usr/bin/twmnd
+
+# Monitor Management (dockd)
+exec --no-startup-id dockd --daemon
+
 
 # Background, Composite
 # exec xcompmgr -c -f -F -D3
